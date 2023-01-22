@@ -6,13 +6,21 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
 // antd 적용
 //import 'antd/dist/antd.css';
+import {Provider} from "react-redux";
+import store from "./redux/configStore";
+import {PersistGate} from "redux-persist/integration/react";
+import persistStore from "redux-persist/es/persistStore";
 
+const persistor = persistStore(store)
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    // BrowerRouter 적용
-    <BrowserRouter>
-        <App />
-    </BrowserRouter>
+    <Provider store={store}>
+        <PersistGate persistor={persistor}>
+            <BrowserRouter>
+                <App/>
+            </BrowserRouter>
+        </PersistGate>
+    </Provider>
 );
 
 reportWebVitals();
