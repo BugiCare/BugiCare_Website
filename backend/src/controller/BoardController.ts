@@ -38,14 +38,11 @@ export class BoardController {
         options['select'] = ["id", "title", "content", "created", "updated"];
         options['order'] = {id: 'DESC'};
         options['relations'] = ['user'];
-        console.log(page_number);
 
         // 쿼리 파라미터가 넘어오지 않으면 전체 목록 리턴!
         if (page_number && page_size) {
             options['skip'] = (page_number - 1) * page_size;
             options['take'] = page_size;
-            //options['offset'] = (page_number - 1) * page_size;
-            //options['limit'] = page_size;
         }
 
 
@@ -60,10 +57,10 @@ export class BoardController {
     // board 하나 보기
     static findOneBoard = async (req, res) => {
         const {id} = req.params;
+
         const board = await getConnection().getRepository(Board).findOne({
-            where: {
-                id
-            }
+            where: {id},
+            relations:['user']
         });
         res.send(board);
     }

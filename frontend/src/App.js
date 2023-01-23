@@ -9,6 +9,7 @@ import PrivateRoute from "./routes/PrivateRoute";
 import AddBoard from "./pages/AddBoard";
 import BoardList from "./pages/BoardList";
 import MyBoardList from "./pages/MyBoardList";
+import Board from "./pages/Board";
 
 const App = () => {
     const token = useSelector((state) => state.Auth.token);
@@ -37,6 +38,7 @@ const App = () => {
                         <PrivateRoute path={`${location.pathname}`} component={MyBoardList}/>
                     }
                 />
+                <Route path="/board/:board_id" element={<Board/>}/>
             </Routes>
         </React.Fragment>
     )
