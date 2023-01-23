@@ -6,7 +6,7 @@ import Home from "./pages/Home";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import PrivateRoute from "./routes/PrivateRoute";
-
+import AddBoard from "./pages/AddBoard";
 
 const App = () => {
     const token = useSelector((state) => state.Auth.token);
@@ -23,7 +23,7 @@ const App = () => {
                 <Route
                     path="/add-board"
                     element={
-                        <PrivateRoute path="/add-board"/>
+                        <PrivateRoute path="/add-board" component={AddBoard}/>
                     }
                 />
             </Routes>
