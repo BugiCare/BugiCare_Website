@@ -1,5 +1,5 @@
 import React from "react";
-import {Routes, Route} from "react-router-dom"
+import {Routes, Route, useLocation} from "react-router-dom"
 import {useSelector} from "react-redux";
 import Header from "./components/Header";
 import Home from "./pages/Home";
@@ -8,13 +8,13 @@ import Login from "./pages/Login";
 import PrivateRoute from "./routes/PrivateRoute";
 import AddBoard from "./pages/AddBoard";
 import BoardList from "./pages/BoardList";
-
-//import MyBoardList from "./pages/myboard-list/MyBoardList";
+import MyBoardList from "./pages/MyBoardList";
 
 const App = () => {
     const token = useSelector((state) => state.Auth.token);
     console.log(token);
-
+    const location = useLocation();
+    
     return (
         <React.Fragment>
             <Header/>
@@ -30,6 +30,13 @@ const App = () => {
                     }
                 />
                 <Route path="/board-list" element={<BoardList/>}/>
+                <Route
+                    path="/myboard-list"
+                    element={
+                        // 쿼리 파라미터가 존재하므로 전체 url을 PrivateRoute에 넘겨준다
+                        <PrivateRoute path={`${location.pathname}`} component={MyBoardList}/>
+                    }
+                />
             </Routes>
         </React.Fragment>
     )
