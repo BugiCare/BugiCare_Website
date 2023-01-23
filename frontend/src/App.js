@@ -7,6 +7,9 @@ import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import PrivateRoute from "./routes/PrivateRoute";
 import AddBoard from "./pages/AddBoard";
+import BoardList from "./pages/BoardList";
+
+//import MyBoardList from "./pages/myboard-list/MyBoardList";
 
 const App = () => {
     const token = useSelector((state) => state.Auth.token);
@@ -26,6 +29,7 @@ const App = () => {
                         <PrivateRoute path="/add-board" component={AddBoard}/>
                     }
                 />
+                <Route path="/board-list" element={<BoardList/>}/>
             </Routes>
         </React.Fragment>
     )
