@@ -6,7 +6,9 @@ import {useSearchParams} from "react-router-dom";
 import "../css/boardList.scss";
 import moment from "moment";
 
-
+import api from "../utils/api";
+import {jwtUtils} from "../utils/jwtUtils";
+import {useSelector} from "react-redux";
 const BoardList = () => {
     const [pageCount, setPageCount] = useState(0);
     const [boardList, setBoardList] = useState([]);
@@ -31,7 +33,7 @@ const BoardList = () => {
         // 페이지 카운트 구하기: (전체 board 갯수) / (한 페이지 갯수) 결과 올림
         getTotalBoard().then(result => setPageCount(Math.ceil(result / 4)));
     }, [])
-
+    console.log(boardList)
     return (
         <div className="boardList-wrapper">
             <div className="boardList-header">
@@ -39,7 +41,7 @@ const BoardList = () => {
             </div>
             <div className="boardList-body">
                 {boardList.map((item, index) => (
-                    <Card key={item.id} username={item.username} date={moment(item.created).add(9, "hour").format('YYYY-MM-DD')}
+                    <Card key={item.id} username={item.user.username} date={moment(item.created).add(9, "hour").format('YYYY-MM-DD')}
                           title={item.title} content={item.content}
                           board_id={item.id} img_url={`/api/image/view/${item.id}`}
                     />
@@ -57,7 +59,6 @@ const BoardList = () => {
                 />
             </div>
         </div>
-
     )
 }
 export default BoardList;

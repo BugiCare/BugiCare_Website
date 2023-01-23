@@ -35,6 +35,7 @@ const MyBoardList = () => {
         // 페이지 카운트 구하기: (전체 board 갯수) / (한 페이지 갯수) 결과 올림
         getTotalBoard().then(result => setPageCount(Math.ceil(result / 4)));
     }, [])
+    console.log(boardList)
 
     return (
         <div className="boardList-wrapper">

@@ -37,7 +37,7 @@ export class BoardController {
         const options = {};
         options['select'] = ["id", "title", "content", "created", "updated"];
         options['order'] = {id: 'DESC'};
-
+        options['relations'] = ['user'];
         // 쿼리 파라미터가 넘어오지 않으면 전체 목록 리턴!
         if (page_number && page_size) {
             options['skip'] = (page_number - 1) * page_size;
