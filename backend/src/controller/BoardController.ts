@@ -38,11 +38,16 @@ export class BoardController {
         options['select'] = ["id", "title", "content", "created", "updated"];
         options['order'] = {id: 'DESC'};
         options['relations'] = ['user'];
+        console.log(page_number);
+
         // 쿼리 파라미터가 넘어오지 않으면 전체 목록 리턴!
         if (page_number && page_size) {
             options['skip'] = (page_number - 1) * page_size;
             options['take'] = page_size;
+            //options['offset'] = (page_number - 1) * page_size;
+            //options['limit'] = page_size;
         }
+
 
         const boards = await getConnection().getRepository(Board).find(options);
         res.send(boards);

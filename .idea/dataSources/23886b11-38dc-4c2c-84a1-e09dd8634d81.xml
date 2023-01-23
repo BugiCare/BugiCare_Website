@@ -1407,22 +1407,22 @@ cysDB|schema||cys||UPDATE|G</Grants>
     </table>
     <table id="520" parent="508" name="image">
       <Engine>InnoDB</Engine>
-      <CollationName>utf8mb3_general_ci</CollationName>
+      <CollationName>utf8mb4_unicode_ci</CollationName>
     </table>
     <table id="521" parent="508" name="role">
       <Engine>InnoDB</Engine>
-      <CollationName>utf8mb3_general_ci</CollationName>
+      <CollationName>utf8mb4_unicode_ci</CollationName>
     </table>
     <table id="522" parent="508" name="user">
       <Engine>InnoDB</Engine>
-      <CollationName>utf8mb3_general_ci</CollationName>
+      <CollationName>utf8mb4_unicode_ci</CollationName>
     </table>
     <table id="523" parent="508" name="user_role">
       <Engine>InnoDB</Engine>
-      <CollationName>utf8mb3_general_ci</CollationName>
+      <CollationName>utf8mb4_unicode_ci</CollationName>
     </table>
     <column id="524" parent="518" name="id">
-      <AutoIncrement>5</AutoIncrement>
+      <AutoIncrement>1</AutoIncrement>
       <DasType>int(11)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1432,22 +1432,22 @@ cysDB|schema||cys||UPDATE|G</Grants>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="526" parent="518" name="created">
-      <DasType>datetime(6)|0s</DasType>
-      <DefaultExpression>current_timestamp(6)</DefaultExpression>
+    <column id="526" parent="518" name="content">
+      <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="527" parent="518" name="updated">
+    <column id="527" parent="518" name="created">
+      <DasType>datetime(6)|0s</DasType>
+      <DefaultExpression>current_timestamp(6)</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <column id="528" parent="518" name="updated">
       <DasType>datetime(6)|0s</DasType>
       <DefaultExpression>current_timestamp(6)</DefaultExpression>
       <NotNull>1</NotNull>
       <OnUpdate>current_timestamp(6)</OnUpdate>
-      <Position>4</Position>
-    </column>
-    <column id="528" parent="518" name="content">
-      <DasType>text|0s</DasType>
-      <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
     <column id="529" parent="518" name="user_id">
@@ -1475,31 +1475,31 @@ cysDB|schema||cys||UPDATE|G</Grants>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="534" parent="519" name="id">
-      <AutoIncrement>4</AutoIncrement>
+      <AutoIncrement>1</AutoIncrement>
       <DasType>int(11)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="535" parent="519" name="created">
-      <DasType>datetime(6)|0s</DasType>
-      <DefaultExpression>current_timestamp(6)</DefaultExpression>
+    <column id="535" parent="519" name="content">
+      <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="536" parent="519" name="updated">
+    <column id="536" parent="519" name="created">
+      <DasType>datetime(6)|0s</DasType>
+      <DefaultExpression>current_timestamp(6)</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="537" parent="519" name="updated">
       <DasType>datetime(6)|0s</DasType>
       <DefaultExpression>current_timestamp(6)</DefaultExpression>
       <NotNull>1</NotNull>
       <OnUpdate>current_timestamp(6)</OnUpdate>
-      <Position>3</Position>
-    </column>
-    <column id="537" parent="519" name="board_id">
-      <DasType>int(11)|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="538" parent="519" name="content">
-      <DasType>text|0s</DasType>
-      <NotNull>1</NotNull>
+    <column id="538" parent="519" name="board_id">
+      <DasType>int(11)|0s</DasType>
       <Position>5</Position>
     </column>
     <column id="539" parent="519" name="user_id">
@@ -1537,7 +1537,7 @@ cysDB|schema||cys||UPDATE|G</Grants>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="546" parent="520" name="id">
-      <AutoIncrement>3</AutoIncrement>
+      <AutoIncrement>1</AutoIncrement>
       <DasType>int(11)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1591,7 +1591,7 @@ cysDB|schema||cys||UPDATE|G</Grants>
       <UnderlyingIndexName>REL_3b857029eda8c2919e92d96f42</UnderlyingIndexName>
     </key>
     <column id="557" parent="521" name="id">
-      <AutoIncrement>7</AutoIncrement>
+      <AutoIncrement>1</AutoIncrement>
       <DasType>int(11)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1625,7 +1625,7 @@ cysDB|schema||cys||UPDATE|G</Grants>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="563" parent="522" name="id">
-      <AutoIncrement>5</AutoIncrement>
+      <AutoIncrement>1</AutoIncrement>
       <DasType>bigint(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1676,40 +1676,40 @@ cysDB|schema||cys||UPDATE|G</Grants>
     <key id="572" parent="522" name="IDX_e12875dfb3b1d92d7d7c5377e2">
       <UnderlyingIndexName>IDX_e12875dfb3b1d92d7d7c5377e2</UnderlyingIndexName>
     </key>
-    <column id="573" parent="523" name="user_id">
-      <DasType>bigint(20)|0s</DasType>
+    <column id="573" parent="523" name="role_id">
+      <DasType>int(11)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="574" parent="523" name="role_id">
-      <DasType>int(11)|0s</DasType>
+    <column id="574" parent="523" name="user_id">
+      <DasType>bigint(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <foreign-key id="575" parent="523" name="FK_d0e5815877f7395a198a4cb0a46">
-      <ColNames>user_id</ColNames>
-      <RefColNames>id</RefColNames>
-      <RefTableName>user</RefTableName>
-    </foreign-key>
-    <foreign-key id="576" parent="523" name="FK_32a6fc2fcb019d8e3a8ace0f55f">
+    <foreign-key id="575" parent="523" name="FK_32a6fc2fcb019d8e3a8ace0f55f">
       <ColNames>role_id</ColNames>
       <OnDelete>cascade</OnDelete>
       <OnUpdate>cascade</OnUpdate>
       <RefColNames>id</RefColNames>
       <RefTableName>role</RefTableName>
     </foreign-key>
+    <foreign-key id="576" parent="523" name="FK_d0e5815877f7395a198a4cb0a46">
+      <ColNames>user_id</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>user</RefTableName>
+    </foreign-key>
     <index id="577" parent="523" name="PRIMARY">
-      <ColNames>user_id
-role_id</ColNames>
+      <ColNames>role_id
+user_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="578" parent="523" name="IDX_d0e5815877f7395a198a4cb0a4">
-      <ColNames>user_id</ColNames>
+    <index id="578" parent="523" name="IDX_32a6fc2fcb019d8e3a8ace0f55">
+      <ColNames>role_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="579" parent="523" name="IDX_32a6fc2fcb019d8e3a8ace0f55">
-      <ColNames>role_id</ColNames>
+    <index id="579" parent="523" name="IDX_d0e5815877f7395a198a4cb0a4">
+      <ColNames>user_id</ColNames>
       <Type>btree</Type>
     </index>
     <key id="580" parent="523" name="PRIMARY">

@@ -6,9 +6,6 @@ import {useSearchParams} from "react-router-dom";
 import "../css/boardList.scss";
 import moment from "moment";
 
-import api from "../utils/api";
-import {jwtUtils} from "../utils/jwtUtils";
-import {useSelector} from "react-redux";
 const BoardList = () => {
     const [pageCount, setPageCount] = useState(0);
     const [boardList, setBoardList] = useState([]);
