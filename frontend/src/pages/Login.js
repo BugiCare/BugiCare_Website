@@ -4,7 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import {Formik, ErrorMessage} from "formik";
 import * as Yup from "yup";
 import {Button, TextField} from "@mui/material";
-import {useNavigate} from "react-router-dom";
+import {useNavigate,useSearchParams} from "react-router-dom";
 // SignUp 컴포넌트 scss 이용
 import "../css/signUp.scss";
 import {useDispatch} from "react-redux";
@@ -12,6 +12,8 @@ import {setToken} from "../redux/AuthReducer";
 
 const Login = () => {
     const navigate = useNavigate();
+    // 쿼리 파라미터 받아오기
+    const [searchParams, setSearchParams] = useSearchParams();
     const dispatch = useDispatch();
     const validationSchema = Yup.object().shape({
         email: Yup.string()
@@ -28,13 +30,20 @@ const Login = () => {
                 password,
             });
             dispatch(setToken(data.jwt));
+            const redirectUrl = searchParams.get("redirectUrl");
             toast.success(<h3>로그인 성공😎</h3>, {
                 position: "top-center",
                 autoClose: 2000,
             });
-            setTimeout(() => {
-                navigate("/");
+            // redirectUrl이 쿼리스트링으로 존재하면 원래가고자 했던 페이지로 돌아가기
+            setTimeout(()=> {
+                if (redirectUrl) {
+                    navigate(redirectUrl);
+                } else {
+                    navigate("/");
+                }
             }, 2000);
+
         } catch (e) {
             // 서버에서 받은 에러 메시지 출력
             toast.error(e.response.data.message + "😭", {
@@ -42,6 +51,7 @@ const Login = () => {
             });
         }
     };
+
 
     return (
         <Formik
