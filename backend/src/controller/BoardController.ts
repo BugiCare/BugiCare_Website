@@ -102,6 +102,12 @@ export class BoardController {
             .from(Board)
             .where("id = :id", {id})
             .execute();
+        const result1 = await getConnection()
+            .createQueryBuilder()
+            .softDelete()
+            .from(Image)
+            .where("board_id = :id", {id})
+            .execute();
 
         res.send(result);
     }

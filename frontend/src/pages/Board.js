@@ -64,7 +64,7 @@ const Board = () => {
                     }
                     <div className="board-header">
                         <div className="board-header-username">{board.user.username}</div>
-                        <div className="board-header-date">{moment(board.created).add(9,"hour").format('YYYY-MM-DD')}</div>
+                        <div className="board-header-date">{moment(board.updatedAt).add(9,"hour").format('YYYY-MM-DD HH:mm')}</div>
                     </div>
                     <hr/>
                     <div className="board-body">
@@ -99,12 +99,10 @@ const Board = () => {
                                     setShow(false);
                                     // 모달의 예 버튼 클릭시 게시물 삭제
                                     await api.delete(`/api/board/${board_id}`);
-                                    
                                     alert("게시물이 삭제되었습니다😎");
                                     const value=1;
                                     //navigate(`/board-list?page=${value}`);
                                     window.location.href=`/myboard-list?page=${value}`;
-                                    //window.location.href = "/myboard-list";
                                 }}
                             >
                                 예

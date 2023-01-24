@@ -25,7 +25,7 @@ export class Image {
 
     @CreateDateColumn()
     createdAt: Date;
-    
+
     @UpdateDateColumn()
     updatedAt: Date;
 
