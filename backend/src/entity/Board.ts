@@ -1,6 +1,7 @@
 import {
     Column,
     CreateDateColumn,
+    DeleteDateColumn,
     Entity,
     ManyToOne,
     OneToMany,
@@ -22,10 +23,13 @@ export class Board {
     content: string;
 
     @CreateDateColumn()
-    created: Date;
+    createdAt: Date;
 
     @UpdateDateColumn()
-    updated: Date;
+    updatedAt: Date;
+
+    @DeleteDateColumn()
+    deletedAt: Date;
 
     @OneToMany(type => Comment, comment => comment.board)
     comments: Comment[];

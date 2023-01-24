@@ -1,6 +1,6 @@
 import {
     Column,
-    CreateDateColumn,
+    CreateDateColumn, DeleteDateColumn,
     Entity,
     JoinTable,
     ManyToMany, OneToMany,
@@ -28,10 +28,13 @@ export class User {
     username: string;
 
     @CreateDateColumn()
-    created: Date;
+    createdAt: Date;
 
     @UpdateDateColumn()
-    updated: Date;
+    updatedAt: Date;
+
+    @DeleteDateColumn()
+    deletedAt: Date;
 
     @ManyToMany(() => Role, role => role.users)
     @JoinTable({

@@ -1,4 +1,12 @@
-import {Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn} from "typeorm";
+import {
+    Column,
+    CreateDateColumn,
+    DeleteDateColumn,
+    Entity,
+    JoinColumn,
+    OneToOne,
+    PrimaryGeneratedColumn, UpdateDateColumn
+} from "typeorm";
 import {Board} from "./Board";
 
 @Entity()
@@ -16,7 +24,13 @@ export class Image {
     original_name: string;
 
     @CreateDateColumn()
-    created: Date;
+    createdAt: Date;
+    
+    @UpdateDateColumn()
+    updatedAt: Date;
+
+    @DeleteDateColumn()
+    deletedAt: Date;
 
     @OneToOne(type => Board, {onDelete:"CASCADE", onUpdate:"CASCADE"})
     @JoinColumn()

@@ -1,6 +1,7 @@
 import {
     Column,
     CreateDateColumn,
+    DeleteDateColumn,
     Entity,
     ManyToOne,
     PrimaryGeneratedColumn,
@@ -18,10 +19,13 @@ export class Comment {
     content: string;
 
     @CreateDateColumn()
-    created: Date;
+    createdAt: Date;
 
     @UpdateDateColumn()
-    updated: Date;
+    updatedAt: Date;
+
+    @DeleteDateColumn()
+    deletedAt: Date;
 
     @ManyToOne(type => Board, board => board.comments, {onDelete: 'CASCADE', onUpdate: "CASCADE"})
     board: Board;

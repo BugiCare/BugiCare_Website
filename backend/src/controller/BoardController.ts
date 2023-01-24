@@ -35,7 +35,7 @@ export class BoardController {
         const {page_number, page_size} = req.query;
 
         const options = {};
-        options['select'] = ["id", "title", "content", "created", "updated"];
+        options['select'] = ["id", "title", "content", "createdAt", "updatedAt","deletedAt"];
         options['order'] = {id: 'DESC'};
         options['relations'] = ['user'];
 
@@ -98,7 +98,7 @@ export class BoardController {
 
         const result = await getConnection()
             .createQueryBuilder()
-            .delete()
+            .softDelete()
             .from(Board)
             .where("id = :id", {id})
             .execute();
@@ -110,7 +110,7 @@ export class BoardController {
         const {user_id, page_number, page_size} = req.query;
 
         const options = {};
-        options['select'] = ["id", "title", "content", "created", "updated"];
+        options['select'] = ["id", "title", "content", "createdAt", "updatedAt","deletedAt"];
         options['order'] = {id: 'DESC'};
         options['relations'] = ['user'];
         options['where'] = {userId: user_id};
