@@ -41,7 +41,7 @@ const Board = () => {
                           board(해당 글)의 user의 ID를 비교했을 때 같으면 수정, 삭제 버튼이 보이게 한다.
                           ID는 DB에 저장되어 있는 유저의 고유 번호이다.
                          */
-                        //jwtUtils.isAuth(token) && jwtUtils.getId(token) === board.user.id &&
+                        jwtUtils.isAuth(token) && jwtUtils.getId(token) === board.user.id &&
                         <div className="edit-delete-button">
                             <Button
                                 variant="outlined" color="error" endIcon={<DeleteForeverOutlinedIcon/>}

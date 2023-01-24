@@ -10,6 +10,7 @@ import AddBoard from "./pages/AddBoard";
 import BoardList from "./pages/BoardList";
 import MyBoardList from "./pages/MyBoardList";
 import Board from "./pages/Board";
+import EditBoard from "./pages/EditBoard";
 
 const App = () => {
     const token = useSelector((state) => state.Auth.token);
@@ -39,6 +40,13 @@ const App = () => {
                     }
                 />
                 <Route path="/board/:board_id" element={<Board/>}/>
+                <Route
+                    path="/edit-board/:board_id"
+                    element={
+                        // URI 파라미터가 존재하므로 전체 url을 PrivateRoute에 넘겨준다
+                        <PrivateRoute path={`${location.pathname}`} component={EditBoard}/>
+                    }
+                />
             </Routes>
         </React.Fragment>
     )
