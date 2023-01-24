@@ -1479,7 +1479,7 @@ cysDB|schema||cys||UPDATE|G</Grants>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="535" parent="519" name="id">
-      <AutoIncrement>2</AutoIncrement>
+      <AutoIncrement>6</AutoIncrement>
       <DasType>int(11)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1508,7 +1508,6 @@ cysDB|schema||cys||UPDATE|G</Grants>
     </column>
     <column id="540" parent="519" name="board_id">
       <DasType>int(11)|0s</DasType>
-      <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
     <column id="541" parent="519" name="user_id">
@@ -1645,7 +1644,7 @@ cysDB|schema||cys||UPDATE|G</Grants>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="567" parent="522" name="id">
-      <AutoIncrement>2</AutoIncrement>
+      <AutoIncrement>3</AutoIncrement>
       <DasType>bigint(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>

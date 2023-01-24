@@ -16,6 +16,17 @@
       font-size: 1.1rem;
     }
   }
+  .comment-edit-delete-button{
+    display: flex;
+    flex-direction: row-reverse;
+    margin-bottom: 0.7rem;
+    button{
+      font-size: 1rem;
+    }
+    .delete-button{
+      margin-left: 0.5rem;
+    }
+  }
 
   .comments-body {
 

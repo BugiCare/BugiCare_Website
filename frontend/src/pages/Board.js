@@ -11,7 +11,7 @@ import DisabledByDefaultOutlinedIcon from "@mui/icons-material/DisabledByDefault
 import api from "../utils/api";
 import moment from "moment";
 import Comments from "../components/Comments";
-
+import EditDeleteBtn from "../components/EditDeleteBtn";
 const Board = () => {
     // URL 파라미터 받기 - board의 id
     const {board_id} = useParams();
@@ -36,34 +36,7 @@ const Board = () => {
         <React.Fragment>
             {isLoaded && (
                 <div className="board-wrapper">
-                    {
-                        /*
-                          해당 글의 작성자가 로그인을 했을 때만 수정, 삭제 버튼이 보이게 하자.
-                          로그인을 한 사용자의 jwt-token에서 user의 ID를 추출한 후,
-                          board(해당 글)의 user의 ID를 비교했을 때 같으면 수정, 삭제 버튼이 보이게 한다.
-                          ID는 DB에 저장되어 있는 유저의 고유 번호이다.
-                         */
-                        jwtUtils.isAuth(token) && jwtUtils.getId(token) === board.user.id &&
-                        <div className="edit-delete-button">
-                            <Button
-                                variant="outlined" color="error" endIcon={<DeleteForeverOutlinedIcon/>}
-                                className="delete-button"
-                                onClick={() => {
-                                    setShow(true)
-                                }}
-                            >
-                                삭제
-                            </Button>
-                            <Button
-                                variant="outlined" endIcon={<BuildOutlinedIcon/>}
-                                onClick={() => {
-                                    navigate(`/edit-board/${board_id}`)
-                                }}
-                            >
-                                수정
-                            </Button>
-                        </div>
-                    }
+                    <EditDeleteBtn item={board} name="board"/>
                     <div className="board-header">
                         <div className="board-header-username">{board.user.username}</div>
                         <div className="board-header-date">{moment(board.updatedAt).add(9,"hour").format('YYYY-MM-DD HH:mm')}</div>
@@ -80,8 +53,7 @@ const Board = () => {
                     </div>
                     <hr/>
                     <div className="board-footer">
-                        {//***************************댓글 보이는 부분
-                        }
+                        {/* ==========댓글 보이는 부분=========== */}
                         <Comments board_id={board_id}/>
                     </div>
                 </div>

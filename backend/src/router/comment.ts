@@ -5,20 +5,20 @@ import {AuthMiddleware} from "../middleware/AuthMiddleware";
 
 const routes = Router();
 
-/*routes.post('', CommentController.addComment);
-routes.get('/list', CommentController.findAllComment);
-routes.get('', CommentController.findOneComment);
-routes.put('', CommentController.modifyComment);
-routes.delete('', CommentController.removeComment);
-*/
+//routes.post('', CommentController.addComment);
+//routes.get('/list', CommentController.findAllComment);
+//routes.get('', CommentController.findOneComment);
+//routes.put('', CommentController.modifyComment);
+routes.delete('/:id', CommentController.removeComment);
+
 
 
 routes.post('', AuthMiddleware.verifyToken, CommentController.addComment);
 routes.get('/list',CommentController.findAllComment);
 // 추가 -> 쿼리 파라미터로 board의 id를 받아서 해당하는 id의 board의 전체 comment 갯수
 routes.get('/count', CommentController.countBoardComment);
-routes.get('', CommentController.findOneComment);
+routes.get('/:id', CommentController.findOneComment);
 routes.put('', AuthMiddleware.verifyToken, CommentController.modifyComment);
-routes.delete('', AuthMiddleware.verifyToken, CommentController.removeComment);
+//routes.delete('/:id', AuthMiddleware.verifyToken, CommentController.removeComment);
 
 export default routes;
