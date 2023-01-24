@@ -4,7 +4,11 @@ import {Board} from "../entity/Board";
 import {User} from "../entity/User";
 // image Entity
 import {Image} from "../entity/Image";
+// comment Entity
+import {Comment} from "../entity/Comment";
 import {getConnection} from "typeorm";
+
+
 export class BoardController {
     // board 추가
     static addBoard = async (req, res) => {
@@ -108,7 +112,12 @@ export class BoardController {
             .from(Image)
             .where("board_id = :id", {id})
             .execute();
-
+        const result2 = await getConnection()
+            .createQueryBuilder()
+            .softDelete()
+            .from(Comment)
+            .where("board_id = :id",{id})
+            .execute();
         res.send(result);
     }
     // user가 등록한 board 가져오기
