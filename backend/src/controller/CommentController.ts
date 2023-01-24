@@ -28,7 +28,7 @@ export class CommentController {
         const {board_id, page_number, page_size} = req.query;
 
         const options = {};
-        options['select'] = ["id", "content", "createdAt", "updatedAt","deletedAt"];
+        options['select'] = ["id", "content", "createdAt", "updatedAt", "deletedAt"];
         options['order'] = {id: 'DESC'};
         options['relations'] = ['user', 'board']
         options['where'] = [{boardId: board_id}]

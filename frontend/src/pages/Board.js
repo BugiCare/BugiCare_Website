@@ -10,6 +10,8 @@ import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined
 import DisabledByDefaultOutlinedIcon from "@mui/icons-material/DisabledByDefaultOutlined";
 import api from "../utils/api";
 import moment from "moment";
+import Comments from "../components/Comments";
+
 const Board = () => {
     // URL 파라미터 받기 - board의 id
     const {board_id} = useParams();
@@ -77,7 +79,11 @@ const Board = () => {
                         </div>
                     </div>
                     <hr/>
-                    <div className="board-footer"></div>
+                    <div className="board-footer">
+                        {//***************************댓글 보이는 부분
+                        }
+                        <Comments board_id={board_id}/>
+                    </div>
                 </div>
             )}
             {/*modal*/}

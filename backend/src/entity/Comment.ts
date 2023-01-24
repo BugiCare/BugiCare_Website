@@ -32,4 +32,10 @@ export class Comment {
 
     @ManyToOne(type => User, user => user.comments)
     user: User;
+
+    @Column()
+    boardId: number;
+
+    @Column()
+    userId: number;
 }
