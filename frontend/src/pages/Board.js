@@ -97,6 +97,13 @@ const Board = () => {
                                 color="error"
                                 onClick={async () => {
                                     setShow(false);
+                                    // 모달의 예 버튼 클릭시 게시물 삭제
+                                    await api.delete(`/api/board/${board_id}`);
+                                    alert("게시물이 삭제되었습니다😎");
+                                    const value=1;
+                                    //navigate(`/board-list?page=${value}`);
+                                    window.location.href=`/myboard-list?page=${value}`;
+                                    //window.location.href = "/myboard-list";
                                 }}
                             >
                                 예
