@@ -18,5 +18,9 @@ export class jwtUtils {
         const decoded = jwtDecode(token)
         return decoded.jti;
     }
+    static getUser(token) {
+        const decoded = jwtDecode(token)
+        return decoded.sub;
+    }
 
 }

@@ -10,12 +10,15 @@ const Header = () => {
     const navigate = useNavigate();
     const token = useSelector(state => state.Auth.token);
     const [isAuth, setIsAuth] = useState(false);
+    const [name,setName]=useState("");
     useEffect(() => {
         if (jwtUtils.isAuth(token)) {
             setIsAuth(true);
+            setName(jwtUtils.getUser(token));
         } else {
             setIsAuth(false);
         }
+
     }, [token]);
     // 비동기로 처리!
     const logout = async () => {
@@ -23,6 +26,7 @@ const Header = () => {
         alert("로그아웃 되었습니다😎");
         navigate("/");
     };
+
     return (
         <div className="header-wrapper">
             <div className="header-title">
@@ -37,6 +41,7 @@ const Header = () => {
                     <>
                         <Link to="/myboard-list?page=1">내 게시물</Link>
                         <Link to="#" onClick={logout}>로그아웃</Link>
+                        <Link to="/">{name}님</Link>
                     </>
                 ) : (
                     <>
