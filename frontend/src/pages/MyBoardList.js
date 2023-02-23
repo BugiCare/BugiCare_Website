@@ -40,12 +40,12 @@ const MyBoardList = () => {
     return (
         <div className="boardList-wrapper">
             <div className="boardList-header">
-                나의 게시물 📝
+                👨🏻‍🦳 내 관리 현황 👵🏻
             </div>
             <div className="boardList-body">
                 {boardList.map((item, index) => (
                     <Card key={item.id} username={item.user.username} date={moment(item.updatedAt).add(9, "hour").format('YYYY-MM-DD')}
-                          title={item.title} content={item.content}
+                          name={item.name} address={item.address} content={item.content}
                           board_id={item.id} img_url={`/api/image/view/${item.id}`}
                     />
                 ))}

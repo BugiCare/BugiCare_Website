@@ -17,7 +17,10 @@ export class Board {
     id: number;
 
     @Column({length: 100})
-    title: string;
+    name: string;
+
+    @Column({length: 100})
+    address: string;
 
     @Column("text")
     content: string;

@@ -1,28 +1,28 @@
 import "../css/home.scss";
+import {useEffect, useState} from "react";
+import axios from "axios";
 
 const Home = () => {
+    const [number, setNumber] = useState(0);
+
+    useEffect(()=>{
+        const getTotal = async () => {
+            const {data} = await axios.get("/api/board/count");
+            return data.total;
+        }
+        getTotal().then(result => setNumber(result));
+
+    },[])
     return (
         <div className="home-wrapper">
             <div className="home-title">
-                <span>Duckgugong</span>에 오신걸 환영합니다
+                <span>BugiCare</span>에 오신걸 환영합니다
             </div>
-            <div className="home-contents">
-                자유롭게 게시판에 글을 작성하고📝<br/>
-                댓글로 여러 의견을 나눠보세요✏️
-            </div>
-            <div className="about-project">
-                이 프로젝트는 Duckgugong이 레퍼런스로 쓰기위해<br/>
-                <span>React</span>와
-                <span> TypeORM</span>으로 만들었습니다😎
-            </div>
+
+
             <div className="my-website">
-                <div className="my-website-title">Duckgugong's Website</div>
-                <a href="https://github.com/ejzl521/Board-FE-React" target="_blank">
-                    🏴GitHub
-                </a>
-                <a href="https://duckgugong.tistory.com/" target="_blank">
-                    📖 Tistory
-                </a>
+                <div className="my-website-title">관리 인원 : {number} 명</div>
+                <div className="my-website-title">위급 상황 : {number} 명</div>
             </div>
         </div>
     )

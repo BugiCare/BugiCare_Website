@@ -1,15 +1,23 @@
 import "../css/textArea.scss";
 
-const TextArea = ({ setTitle, setContent, title, content }) => {
+const TextArea = ({ setName,setAddress, setContent, name,address, content }) => {
     return (
         <div className="textArea-wrapper">
             <input
                 onChange={(e) => {
-                    setTitle(e.target.value);
+                    setName(e.target.value);
                 }}
                 className="title"
-                placeholder="제목을 입력하세요"
-                value={title}
+                placeholder="이름을 입력하세요"
+                value={name}
+            />
+            <input
+                onChange={(e) => {
+                    setAddress(e.target.value);
+                }}
+                className="title"
+                placeholder="주소를 입력하세요"
+                value={address}
             />
             <textarea
                 onChange={(e) => {

@@ -13,12 +13,13 @@ export class BoardController {
     // board 추가
     static addBoard = async (req, res) => {
         // board 저장
-        const {title, content, user_id} = req.body;
+        const {name,address, content, user_id} = req.body;
         const user = await getConnection().getRepository(User).findOne({
             where:{id: user_id}
         });
         const board = new Board();
-        board.title = title;
+        board.name = name;
+        board.address = address;
         board.content = content;
         board.user = user;
         const result = await getConnection().getRepository(Board).save(board)
@@ -39,7 +40,7 @@ export class BoardController {
         const {page_number, page_size} = req.query;
 
         const options = {};
-        options['select'] = ["id", "title", "content", "createdAt", "updatedAt","deletedAt"];
+        options['select'] = ["id", "name","address", "content", "createdAt", "updatedAt","deletedAt"];
         options['order'] = {id: 'DESC'};
         options['relations'] = ['user'];
 
@@ -71,9 +72,10 @@ export class BoardController {
     // board 수정
     static modifyBoard = async (req, res) => {
 
-        const {id, title, content} = req.body;
+        const {id, name, address, content} = req.body;
         const updateOption = {
-            "title": title,
+            "name": name,
+            "address": address,
             "content": content
         };
         // board 먼저 수정
@@ -125,7 +127,7 @@ export class BoardController {
         const {user_id, page_number, page_size} = req.query;
 
         const options = {};
-        options['select'] = ["id", "title", "content", "createdAt", "updatedAt","deletedAt"];
+        options['select'] = ["id", "name","address", "content", "createdAt", "updatedAt","deletedAt"];
         options['order'] = {id: 'DESC'};
         options['relations'] = ['user'];
         options['where'] = {userId: user_id};

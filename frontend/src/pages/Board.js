@@ -38,7 +38,7 @@ const Board = () => {
                 <div className="board-wrapper">
                     <EditDeleteBtn item={board} name="board"/>
                     <div className="board-header">
-                        <div className="board-header-username">{board.user.username}</div>
+                        <div className="board-header-username">관리자 : {board.user.username}</div>
                         <div className="board-header-date">{moment(board.updatedAt).add(9,"hour").format('YYYY-MM-DD HH:mm')}</div>
                     </div>
                     <hr/>
@@ -47,7 +47,8 @@ const Board = () => {
                             <img src={`/api/image/view/${board_id}`}/>
                         </div>
                         <div className="board-title-content">
-                            <div className="board-title">{board.title}</div>
+                            <div className="board-title">{board.name}</div>
+                            <div className="board-content">주소 : {board.address}</div>
                             <div className="board-content">{board.content}</div>
                         </div>
                     </div>

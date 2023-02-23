@@ -15,20 +15,22 @@ const AddBoard = () => {
     const navigate = useNavigate();
 
     // 게시판 제목, 내용, 사진
-    const [title, setTitle] = useState("");
+    const [name, setName] = useState("");
+    const [address, setAddress] = useState("");
     const [content, setContent] = useState("");
     const [image, setImage] = useState({
         image_file: "",
         preview_URL: "image/default_image.png",
     });
     const canSubmit = useCallback(() => {
-        return image.image_file !== "" && content !== "" && title !== "";
-    }, [image, title, content]);
+        return image.image_file !== "" && content !== "" && name !== "" && address !== "";
+    }, [image, name,address, content]);
 
     const handleSubmit = useCallback(async () => {
         try{
             const formData = new FormData();
-            formData.append("title", title);
+            formData.append("name", name);
+            formData.append("address", address);
             formData.append("content", content);
             formData.append("file", image.image_file);
             formData.append("user_id", jwtUtils.getId(token));
@@ -50,7 +52,7 @@ const AddBoard = () => {
     return (
         <div className="addBoard-wrapper">
             <div className="addBoard-header">
-                게시물 등록하기 🖊️
+                등록하기 🖊️
             </div>
             <div className="submitButton">
                 {canSubmit() ? (
@@ -73,7 +75,7 @@ const AddBoard = () => {
             </div>
             <div className="addBoard-body">
                 <ImageUploader setImage={setImage} preview_URL={image.preview_URL}/>
-                <TextArea setTitle={setTitle} setContent={setContent} title={title} content={content}/>
+                <TextArea setName={setName}setAddress={setAddress} setContent={setContent} name={name} address={address} content={content}/>
             </div>
         </div>
     );

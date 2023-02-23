@@ -17,7 +17,8 @@ const EditBoard = () => {
     // URI 파라미터 가져오기
     const {board_id} = useParams();
     // 게시판 제목, 내용, 사진
-    const [title, setTitle] = useState("");
+    const [name, setName] = useState("");
+    const [address, setAddress] = useState("");
     const [content, setContent] = useState("");
     const [image, setImage] = useState({
         image_file: "",
@@ -33,7 +34,8 @@ const EditBoard = () => {
             return data;
         }
         getBoard().then((result) => {
-            setTitle(result.title);
+            setName(result.name);
+            setAddress(result.address);
             setContent(result.content);
             // 이미지는 파일을 불러올 필요가 없이 미리보기 url만 가져온다.
             // 이미지를 선택하지 않고 올리면 db에 저장되어 있는 이미지를 그대로 사용!
@@ -42,13 +44,14 @@ const EditBoard = () => {
     }, [])
 
     const canSubmit = useCallback(() => {
-        return content !== "" && title !== "";
-    }, [image, title, content]);
+        return content !== "" && name !== "" && address !== "";
+    }, [image, name,address, content]);
 
     const handleSubmit = useCallback(async () => {
         try {
             const formData = new FormData();
-            formData.append("title", title);
+            formData.append("name", name);
+            formData.append("address", address);
             formData.append("content", content);
             // 이미지를 선택했을 때만 formdata에 넣음
             formData.append("file", image.image_file);
@@ -70,7 +73,7 @@ const EditBoard = () => {
     return (
         <div className="addBoard-wrapper">
             <div className="addBoard-header">
-                게시물 수정하기 🖊️
+                수정하기 🖊️
             </div>
             <div className="submitButton">
                 {canSubmit() ? (
@@ -87,13 +90,13 @@ const EditBoard = () => {
                         variant="outlined"
                         size="large"
                     >
-                        제목과 내용을 모두 입력하세요😭
+                        내용을 모두 입력하세요😭
                     </Button>
                 )}
             </div>
             <div className="addBoard-body">
                 <ImageUploader setImage={setImage} preview_URL={image.preview_URL}/>
-                <TextArea setTitle={setTitle} setContent={setContent} title={title} content={content}/>
+                <TextArea setName={setName} setAddress={setAddress} setContent={setContent} name={name} address={address} content={content}/>
             </div>
         </div>
     );

@@ -1,7 +1,7 @@
 import "../css/card.scss";
 import {useNavigate} from "react-router-dom";
 
-export const Card = ({board_id, title, content, img_url, username, date}) => {
+export const Card = ({board_id, name, address, content, img_url, username, date}) => {
     const navigate = useNavigate();
     return (
         <div className="card-wrapper" onClick={() => {
@@ -11,7 +11,8 @@ export const Card = ({board_id, title, content, img_url, username, date}) => {
                 <img src={img_url}/>
             </div>
             <div className="card-body-text">
-                <div className="card-body-text-title">{title}</div>
+                <div className="card-body-text-title">{name}</div>
+                <div className="card-body-text-content">{address}</div>
                 <div className="card-body-text-content">{content}</div>
             </div>
 

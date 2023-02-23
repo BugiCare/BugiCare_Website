@@ -31,15 +31,15 @@ const Header = () => {
         <div className="header-wrapper">
             <div className="header-title">
                 <Link to="/">
-                    <span>postBoard</span>
+                    <img style={{maxWidth: '50%'}} src={"image/bugicare.png"}/>
                 </Link>
             </div>
             <div className="header-menu">
-                <Link to="/board-list?page=1">게시판</Link>
-                <Link to="/add-board">글쓰기</Link>
+                <Link to="/board-list?page=1">전체 관리</Link>
+                <Link to="/add-board">등록하기</Link>
                 {isAuth ? (
                     <>
-                        <Link to="/myboard-list?page=1">내 게시물</Link>
+                        <Link to="/myboard-list?page=1">내 관리</Link>
                         <Link to="#" onClick={logout}>로그아웃</Link>
                         <Link to="/">{name}님</Link>
                     </>
