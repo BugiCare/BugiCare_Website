@@ -1,7 +1,7 @@
 import "../css/imageUploader.scss";
 import { Button } from "@mui/material";
 
-const ImageUploader = ({ preview_URL, setImage }) => {
+const ImageUploader = ({ preview_URL, setImage,type }) => {
     let inputRef;
 
     const saveImage = (e) => {
@@ -28,7 +28,10 @@ const ImageUploader = ({ preview_URL, setImage }) => {
                 style={{ display: "none" }}
             />
             <div className="img-wrapper">
-                <img src={preview_URL} />
+                {type ==="user" ?
+                    <img src={preview_URL} /> :
+                    <img style={{borderRadius: "50%",}} src={preview_URL} />
+                }
             </div>
             <div className="upload-button">
                 <Button

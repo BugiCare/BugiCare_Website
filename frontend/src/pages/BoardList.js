@@ -38,7 +38,7 @@ const BoardList = () => {
             </div>
             <div className="boardList-body">
                 {boardList.map((item, index) => (
-                    <Card key={item.id} username={item.user.username} date={moment(item.updatedAt).add(9, "hour").format('YYYY-MM-DD')}
+                    <Card key={item.id} username={item.user.username} date={moment(item.createdAt).add(9, "hour").format('YYYY-MM-DD')}
                           name={item.name} address={item.address} content={item.content}
                           board_id={item.id} img_url={`/api/image/view/${item.id}`}
                     />

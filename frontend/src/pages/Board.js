@@ -47,7 +47,7 @@ const Board = () => {
                             <img src={`/api/image/view/${board_id}`}/>
                         </div>
                         <div className="board-title-content">
-                            <div className="board-title">{board.name}</div>
+                            <div className="board-title">이름 : {board.name}</div>
                             <div className="board-content">주소 : {board.address}</div>
                             <div className="board-content">{board.content}</div>
                         </div>

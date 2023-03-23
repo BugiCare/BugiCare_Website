@@ -8,9 +8,11 @@ import Login from "./pages/Login";
 import PrivateRoute from "./routes/PrivateRoute";
 import AddBoard from "./pages/AddBoard";
 import BoardList from "./pages/BoardList";
-import MyBoardList from "./pages/MyBoardList";
+//import MyBoardList from "./pages/MyBoardList";
 import Board from "./pages/Board";
 import EditBoard from "./pages/EditBoard";
+import MyPage from "./pages/EditMyPage";
+import MyList from "./pages/MyList";
 
 const App = () => {
     const token = useSelector((state) => state.Auth.token);
@@ -36,7 +38,8 @@ const App = () => {
                     path="/myboard-list"
                     element={
                         // 쿼리 파라미터가 존재하므로 전체 url을 PrivateRoute에 넘겨준다
-                        <PrivateRoute path={`${location.pathname}`} component={MyBoardList}/>
+                        //<PrivateRoute path={`${location.pathname}`} component={MyBoardList}/>
+                        <PrivateRoute path={`${location.pathname}`} component={MyList}/>
                     }
                 />
                 <Route path="/board/:board_id" element={<Board/>}/>
@@ -45,6 +48,13 @@ const App = () => {
                     element={
                         // URI 파라미터가 존재하므로 전체 url을 PrivateRoute에 넘겨준다
                         <PrivateRoute path={`${location.pathname}`} component={EditBoard}/>
+                    }
+                />
+                <Route
+                    path="/mypage"
+                    element={
+                        // URI 파라미터가 존재하므로 전체 url을 PrivateRoute에 넘겨준다
+                        <PrivateRoute path={`${location.pathname}`} component={MyPage}/>
                     }
                 />
             </Routes>

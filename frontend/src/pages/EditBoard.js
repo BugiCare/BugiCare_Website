@@ -95,7 +95,7 @@ const EditBoard = () => {
                 )}
             </div>
             <div className="addBoard-body">
-                <ImageUploader setImage={setImage} preview_URL={image.preview_URL}/>
+                <ImageUploader setImage={setImage} preview_URL={image.preview_URL} type="user" />
                 <TextArea setName={setName} setAddress={setAddress} setContent={setContent} name={name} address={address} content={content}/>
             </div>
         </div>

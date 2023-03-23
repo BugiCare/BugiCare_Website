@@ -6,20 +6,23 @@ import {useEffect, useState} from "react";
 import {setToken} from "../redux/AuthReducer";
 
 const Header = () => {
+    const logo ="image/bugicare.png";
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const token = useSelector(state => state.Auth.token);
     const [isAuth, setIsAuth] = useState(false);
     const [name,setName]=useState("");
     useEffect(() => {
+        checkAuth();
+    }, [token]);
+    const checkAuth =()=>{
         if (jwtUtils.isAuth(token)) {
             setIsAuth(true);
             setName(jwtUtils.getUser(token));
         } else {
             setIsAuth(false);
         }
-
-    }, [token]);
+    }
     // 비동기로 처리!
     const logout = async () => {
         await dispatch(setToken(""));
@@ -31,7 +34,7 @@ const Header = () => {
         <div className="header-wrapper">
             <div className="header-title">
                 <Link to="/">
-                    <img style={{maxWidth: '50%'}} src={"image/bugicare.png"}/>
+                    <img style={{maxWidth: '50%'}} src={logo}/>
                 </Link>
             </div>
             <div className="header-menu">
@@ -41,7 +44,7 @@ const Header = () => {
                     <>
                         <Link to="/myboard-list?page=1">내 관리</Link>
                         <Link to="#" onClick={logout}>로그아웃</Link>
-                        <Link to="/">{name}님</Link>
+                        <Link to="/mypage">{name}님</Link>
                     </>
                 ) : (
                     <>

@@ -1,0 +1,46 @@
+@keyframes smoothAppear {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}
+.myList-wrapper{
+  opacity: 0;
+  animation: smoothAppear 1.5s forwards;
+  animation-delay: 0.5s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .myList-header{
+    color: midnightblue;
+    font-weight: bold;
+    font-size: 2rem;
+  }
+  .myList-body{
+    display: flex;
+    align-items: center;
+    .myList-profile{
+      //flex-shrink: 0;
+      width: 40%;
+      //height: 100%;
+      //margin-right: 1rem;
+      //margin-left: 20rem;
+      align-items: center;
+      justify-content: center;
+      //flex-wrap: wrap;
+    }
+    .myList-table{
+      width: 700px;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  .myList-footer{
+    margin: 1.5rem;
+  }
+}
+
