@@ -1,13 +1,16 @@
 import {jwtUtils} from "../utils/jwtUtils";
-import {Button} from "@mui/material";
+import {Button, Dialog, DialogContent, IconButton} from "@mui/material";
 import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
 import api from "../utils/api";
 import BuildOutlinedIcon from "@mui/icons-material/BuildOutlined";
-import React from "react";
+import React, {useState} from "react";
 import {useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
+import DisabledByDefaultOutlinedIcon from "@mui/icons-material/DisabledByDefaultOutlined";
 
 const EditDeleteBtn =({item,name})=>{
+    const [show, setShow] = useState(false);
+
     const navigate = useNavigate();
     const token = useSelector(state => state.Auth.token);
     console.log({item},name);
@@ -26,16 +29,7 @@ const EditDeleteBtn =({item,name})=>{
                         variant="outlined" color="error" endIcon={<DeleteForeverOutlinedIcon/>}
                         className="delete-button"
                         onClick={async() => {
-
-                            await api.delete(`/api/${name}/${item.id}`);
-                            if(name=="board"){
-                                alert("게시글이 삭제되었습니다😎");
-                                window.location.href="/board-list?page=1"
-                            }
-                            if(name=="comment"){
-                                alert("댓글이 삭제되었습니다😎");
-                                window.location.reload();
-                            }
+                            setShow(true);
                         }}
                     >
                         삭제
@@ -53,6 +47,49 @@ const EditDeleteBtn =({item,name})=>{
                     </Button>
                 </div>
             }
+            {/*modal*/}
+            <Dialog open={show}>
+                <DialogContent style={{position: "relative"}}>
+                    <IconButton
+                        style={{position: "absolute", top: "0", right: "0"}}
+                        onClick={() => setShow(false)}
+                    >
+                        <DisabledByDefaultOutlinedIcon/>
+                    </IconButton>
+                    <div className="modal">
+                        <div className="modal-title"> 정말 삭제하시겠습니까 ?</div>
+                        <div className="modal-button">
+                            <Button
+                                variant="outlined"
+                                color="error"
+                                onClick={async () => {
+                                    setShow(false);
+                                    await api.delete(`/api/${name}/${item.id}`);
+                                    if(name=="board"){
+                                        alert("게시글이 삭제되었습니다😎");
+                                        window.location.href="/myboard-list?page=1"
+                                    }
+                                    if(name=="comment"){
+                                        alert("댓글이 삭제되었습니다😎");
+                                        window.location.reload();
+                                    }
+                                }}
+                            >
+                                예
+                            </Button>
+                            <Button
+                                variant="outlined"
+                                color="primary"
+                                onClick={() => {
+                                    setShow(false)
+                                }}
+                            >
+                                아니오
+                            </Button>
+                        </div>
+                    </div>
+                </DialogContent>
+            </Dialog>
         </div>
     );
 }

@@ -10,7 +10,6 @@ import moment from "moment";
 //=====================================
 
 import Tables from "../components/Tables"
-import MyTable from "../components/MyTable";
 import {Card} from "../components/Card";
 const MyList = () => {
     const [pageCount, setPageCount] = useState(0);
