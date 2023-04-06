@@ -22,7 +22,7 @@ const Home = () => {
                 <span>BugiCare</span>에 오신걸 환영합니다
             </div>
 
-            <Video/>
+            {/*<Video/>*/}
             <div className="my-website">
                 <div className="my-website-title">관리 인원 : {number} 명</div>
                 <div className="my-website-title">위급 상황 : {number} 명</div>
