@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react"
-import{FaUser,FaVideo, FaChartLine,FaBars} from "react-icons/fa"
+import{FaUser,FaVideo, FaChartLine} from "react-icons/fa"
 import {NavLink, useParams} from "react-router-dom";
 import "../css/sidebar.scss"
 import styled from "styled-components";
@@ -7,7 +7,6 @@ const Sidebar =({childern}) =>{
     const [isHovering, setIsHovering] = useState(0);
 
 
-    console.log(isHovering)
     const {board_id} = useParams();
     const [isOpen,setIsOpen]=useState(false);
 
@@ -15,34 +14,32 @@ const Sidebar =({childern}) =>{
     const menuItem=[
         {
             id:2,
-            path:`/board/${board_id}`,
+            path:`/user/${board_id}`,
             name:"information",
             icon:<FaUser/>
         },
         {
             id:3,
-            path:`/board/${board_id}`,
+            path:`/user/${board_id}`,
             name:"analysis",
             icon:<FaChartLine/>
         },
         {
             id:4,
-            path:`/board/${board_id}`,
+            path:`/user/${board_id}`,
             name:"Video",
             icon:<FaVideo/>
         },
     ]
+    console.log(isHovering,menuItem.id)
+
     return(
         <div className="sidebar-container">
             <Button clicked={isOpen} onClick={() => toggle()}>
                 Click
             </Button>
             <div style={{width:isOpen?"-100px":"60px"}} className="sidebar">
-                {/*<div className="top-section">
-                <div className="bars">
-                    <FaBars onClick={toggle}/>
-                </div>
-                </div>*/}
+
                 {
                     menuItem.map((item,index)=>(
                         <NavLink
@@ -52,8 +49,8 @@ const Sidebar =({childern}) =>{
                             <div style={{display:isOpen ?"block":"none"}} className="link-text">{item.name}</div>
                             <div className="icon">{item.icon}</div>
                         </NavLink>
-
                     ))
+
                 }
 
             </div>

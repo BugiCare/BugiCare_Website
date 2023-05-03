@@ -26,6 +26,17 @@ const App = () => {
                 <Route path="/" element={<Home/>}/>
                 <Route path="/sign-up" element={<SignUp/>}/>
                 <Route path="/login" element={<Login/>}/>
+                {/*<Route path="/board-list" element={<BoardList/>}/>*/}
+                {/*노드JS<Route path="/board/:board_id" element={<Board/>}/>*/}
+                <Route path="/user/:board_id" element={<Board/>}/>
+                {/*<Route path="/allUser" element={<BoardList/>}/>*/}
+                <Route path="/pageUser" element={<BoardList/>}/>
+                <Route path="/add-board" element={<AddBoard/>}/>
+                <Route path="/myboard-list" element={<MyList/>}/>
+
+                <Route path="/edit-board/:board_id" element={<EditBoard/>}/>
+                <Route path="/mypage" element={<MyPage/>}/>
+
                 {/* 인증이 필요한 컴포넌트는 아래처럼 PrivateRoute 컴포넌트 사용!*/}
                 <Route
                     path="/add-board"
@@ -33,7 +44,6 @@ const App = () => {
                         <PrivateRoute path="/add-board" component={AddBoard}/>
                     }
                 />
-                <Route path="/board-list" element={<BoardList/>}/>
                 <Route
                     path="/myboard-list"
                     element={
@@ -42,7 +52,6 @@ const App = () => {
                         <PrivateRoute path={`${location.pathname}`} component={MyList}/>
                     }
                 />
-                <Route path="/board/:board_id" element={<Board/>}/>
                 <Route
                     path="/edit-board/:board_id"
                     element={

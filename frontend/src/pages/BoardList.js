@@ -11,38 +11,33 @@ import { ScrollMenu } from 'react-horizontal-scrolling-menu';
 import { LeftArrow, RightArrow } from './Arrow';
 import styled from 'styled-components'
 
+const url="http://15.164.7.163:8080";
+//const url="http://localhost:8080";
+console.log("url = ",url);
 const BoardList = () => {
     const [pageCount, setPageCount] = useState(0);
     const [boardList, setBoardList] = useState([]);
     const [searchParams, setSearchParams] = useSearchParams();
 
-    // 렌더링 되고 한번만 전체 게시물 갯수 가져와서 페이지 카운트 구하기
-    // 렌더링 되고 한번만 페이지에 해당하는 게시물 가져오기
     useEffect(() => {
-        // 페이지에 해당하는 게시물 가져오기
         const getBoardList = async () => {
             const page_number = searchParams.get("page");
-            //const {data} = await axios.get(`/api/board/list?page_number=${page_number}&page_size=4`);
-            //const {data} = await axios.get(`http://localhost:8080/test`);
-            const {data} = await axios.get(`http://localhost:8080/allUser`);
 
-            //const {data} = await axios.get(`http://15.164.7.163:8080/allUser`);
-            console.log("44444",data);
+            const {data} = await axios.get(`${url}/pageUser?page=${page_number}&offset=4`);
+            //const {data} = await axios.get(`/allUser`);
+            console.log("유저 데이터 가져옴",data);
 
             return data;
         }
 
-        // 현재 페이지에 해당하는 게시물로 상태 변경하기
         getBoardList().then(result => setBoardList(result));
-        // 게시물 전체 갯수 구하기
         const getTotalBoard = async () => {
-            //const {data} = await axios.get("/api/board/count");
-            //return data.total;
+            const {data} = await axios.get(`${url}/allUser`);
+            console.log("데이터 개수는? ",data.length);
+            return data.length;
         }
-        // 페이지 카운트 구하기: (전체 board 갯수) / (한 페이지 갯수) 결과 올림
         getTotalBoard().then(result => setPageCount(Math.ceil(result / 4)));
     }, [])
-    console.log(boardList)
 
     return (
         <div className="boardList-wrapper">
@@ -61,13 +56,9 @@ const BoardList = () => {
                 </ScrollMenu>*/}
 
                 {boardList.map((item) => (
-                    /*<Card key={item.id} username={item.user.username} date={moment(item.createdAt).add(9, "hour").format('YYYY-MM-DD')}
-                          name={item.name} address={item.address} content={item.content}
-                          board_id={item.id} img_url={`/api/image/view/${item.id}`}
-                    />*/
                     <Card key={item.id} name={item.name} gender={item.gender}
                     age={item.age} address={item.address} phone={item.phone}
-                    board_id={item.id} img_url={`/api/image/view/${item.id}`}
+                    board_id={item.id}
                     />
                 ))}
             </div>
@@ -77,7 +68,7 @@ const BoardList = () => {
                     variant="outlined" color="primary" page={Number(searchParams.get("page"))}
                     count={pageCount} size="large"
                     onChange={(e, value) => {
-                        window.location.href = `/board-list?page=${value}`;
+                        window.location.href = `/pageUser?page=${value}`;
                     }}
                     showFirstButton showLastButton
                 />

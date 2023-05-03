@@ -3,27 +3,32 @@ import {Button, Dialog, DialogContent, IconButton} from "@mui/material";
 import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
 import api from "../utils/api";
 import BuildOutlinedIcon from "@mui/icons-material/BuildOutlined";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import DisabledByDefaultOutlinedIcon from "@mui/icons-material/DisabledByDefaultOutlined";
+import axios from "axios";
 
 const EditDeleteBtn =({item,name})=>{
     const [show, setShow] = useState(false);
-
+    let USERID = "";
+    switch (name){
+        case "board":
+            USERID = item.data.id;
+            break;
+        case "comment":
+            USERID = item.user.id;
+            break;
+    }
     const navigate = useNavigate();
     const token = useSelector(state => state.Auth.token);
-    console.log({item},name);
+    console.log("딜리트 버튼 아이디 식별 =",USERID);
+    console.log("카테고리",item);
+
     return(
         <div className="comments-wrapper">
             {
-                /*
-                          해당 글의 작성자가 로그인을 했을 때만 수정, 삭제 버튼이 보이게 하자.
-                          로그인을 한 사용자의 jwt-token에서 user의 ID를 추출한 후,
-                          board(해당 글)의 user의 ID를 비교했을 때 같으면 수정, 삭제 버튼이 보이게 한다.
-                          ID는 DB에 저장되어 있는 유저의 고유 번호이다.
-                */
-                jwtUtils.isAuth(token) && jwtUtils.getId(token) === item.user.id &&
+                jwtUtils.isAuth(token) && jwtUtils.getId(token) === USERID &&
                 <div className="comment-edit-delete-button">
                     <Button
                         variant="outlined" color="error" endIcon={<DeleteForeverOutlinedIcon/>}
@@ -34,17 +39,18 @@ const EditDeleteBtn =({item,name})=>{
                     >
                         삭제
                     </Button>
+                    {name=="board" ?
                     <Button
                         variant="outlined" endIcon={<BuildOutlinedIcon/>}
                         onClick={() => {
                             if(name=="board"){
-                                navigate(`/edit-board/${item.id}`)
+                                navigate(`/edit-board/${item.data.id}`)
                             }
 
                         }}
                     >
                         수정
-                    </Button>
+                    </Button>:null}
                 </div>
             }
             {/*modal*/}
