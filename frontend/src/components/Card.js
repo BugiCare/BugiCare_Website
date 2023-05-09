@@ -16,10 +16,12 @@ export const Card = ({board_id, name, address, gender, age, phone, manager_id}) 
 
     let gender1="";
     switch (gender){
-        case"MALE":
+        case "MALE" :
             gender1="남성";
-        case"FEMALE":
+            break;
+        case "FEMALE" :
             gender1="여성";
+            break;
     }
 
     const getImage = async () => {

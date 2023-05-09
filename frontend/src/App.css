@@ -36,3 +36,7 @@
     transform: rotate(360deg);
   }
 }
+@font-face {
+  font-family: "BMJUA";
+  src: url("./font/BMJUA.ttf");
+}

@@ -1,7 +1,7 @@
 import "../css/home.scss";
 import {useEffect, useState} from "react";
 import axios from "axios";
-import Video from "./Video";
+import Video from "./LiveVideo";
 
 
 const url="http://15.164.7.163:8080";
@@ -38,10 +38,10 @@ const Home = () => {
             <div className="home-title">
                 <img style={{maxWidth: '100%' }} src={logo}/>
                 <br/>
-                <span>BugiCare</span>에 오신걸 환영합니다
+                <span>BugiCare 부기케어 </span>에 오신걸 환영합니다
             </div>
 
-            {/*<Video/>*/}
+            <Video/>
             <div className="my-website">
                 <div className="my-website-title">전체 담당 인원 : {allNum} 명</div>
                 <div className="my-website-title">내 담당 인원  : {myNum} 명</div>
