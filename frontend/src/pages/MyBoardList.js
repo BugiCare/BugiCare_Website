@@ -14,6 +14,8 @@ const MyBoardList = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     // user의 id를 알아내기 위해 token 가져오기
     const token = useSelector(state => state.Auth.token);
+    const [isAuth, setIsAuth] = useState(false);
+    const [name, setName] = useState("");
     // 렌더링 되고 한번만 전체 게시물 갯수 가져와서 페이지 카운트 구하기
     // 렌더링 되고 한번만 페이지에 해당하는 게시물 가져오기
     useEffect(() => {
@@ -34,7 +36,16 @@ const MyBoardList = () => {
         }
         // 페이지 카운트 구하기: (전체 board 갯수) / (한 페이지 갯수) 결과 올림
         getTotalBoard().then(result => setPageCount(Math.ceil(result / 4)));
+
     }, [])
+    useEffect(() => {
+        if (jwtUtils.isAuth(token)) {
+            setIsAuth(true);
+            setName(jwtUtils.getUser(token));
+        }
+        else {
+            setIsAuth(false);
+        }}, [token]);
     console.log(boardList)
 
     return (

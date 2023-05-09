@@ -16,26 +16,20 @@ const url="http://15.164.7.163:8080";
 console.log("url = ",url);
 const BoardList = () => {
     const [pageCount, setPageCount] = useState(0);
-    const [boardList, setBoardList] = useState([]);
+    const [userList, setUserList] = useState([]);
     const [searchParams, setSearchParams] = useSearchParams();
 
+    const getUserData = async () => {
+        const page_number = searchParams.get("page");
+        const {data} = await axios.get(`${url}/pageUser?page=${page_number}&offset=4`);
+        return data;
+    }
+    const getTotalBoard = async () => {
+        const {data} = await axios.get(`${url}/allUser`);
+        return data.length;
+    }
     useEffect(() => {
-        const getBoardList = async () => {
-            const page_number = searchParams.get("page");
-
-            const {data} = await axios.get(`${url}/pageUser?page=${page_number}&offset=4`);
-            //const {data} = await axios.get(`/allUser`);
-            console.log("유저 데이터 가져옴",data);
-
-            return data;
-        }
-
-        getBoardList().then(result => setBoardList(result));
-        const getTotalBoard = async () => {
-            const {data} = await axios.get(`${url}/allUser`);
-            console.log("데이터 개수는? ",data.length);
-            return data.length;
-        }
+        getUserData().then(result => setUserList(result));
         getTotalBoard().then(result => setPageCount(Math.ceil(result / 4)));
     }, [])
 
@@ -55,10 +49,10 @@ const BoardList = () => {
                     ))}
                 </ScrollMenu>*/}
 
-                {boardList.map((item) => (
+                {userList.map((item) => (
                     <Card key={item.id} name={item.name} gender={item.gender}
                     age={item.age} address={item.address} phone={item.phone}
-                    board_id={item.id}
+                    board_id={item.id} manager_id ={item.manager_id}
                     />
                 ))}
             </div>

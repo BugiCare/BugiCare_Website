@@ -7,20 +7,33 @@ const url="http://15.164.7.163:8080";
 //const url="http://localhost:8080";
 console.log("url = ",url);
 
-export const Card = ({board_id, name, address, gender, age, phone}) => {
+export const Card = ({board_id, name, address, gender, age, phone, manager_id}) => {
 
     const [profileImg,setProfileImg]=useState("");
     const [profileImg1,setProfileImg1]=useState("");
     const navigate = useNavigate();
-    const getImage = async () => {
-        const {data} = await axios.get(`${url}/userImage/${board_id}`,{responseType:'blob',})
-        //console.log("44dd444",data);
+    const [managerData, setManagerData] = useState([]);
 
-        return data;
+    let gender1="";
+    switch (gender){
+        case"MALE":
+            gender1="남성";
+        case"FEMALE":
+            gender1="여성";
     }
 
+    const getImage = async () => {
+        const {data} = await axios.get(`${url}/userImage/${board_id}`,{responseType:'blob',})
+        return data;
+    }
+    const getManagerData = async () => {
+        const {data} = await axios.get(`${url}/manager/${manager_id}`);
+        console.log("데이터 개수는? ",data);
+        return data;
+    }
     useEffect(() => {
         // 현재 페이지에 해당하는 게시물로 상태 변경하기
+        getManagerData().then(result=>setManagerData(result));
 
         getImage().then(response=>{
             console.log("4444",response);
@@ -29,7 +42,7 @@ export const Card = ({board_id, name, address, gender, age, phone}) => {
             setProfileImg1(imageUrl);
         })
 
-        axios.get(`http://localhost:8080/userImage/${board_id}`,{responseType:'blob',})
+        axios.get(`${url}/userImage/${board_id}`,{responseType:'blob',})
             .then(response=>{
                 console.log("33333",response);
                 const imageBlob =new Blob([response.data]);
@@ -44,7 +57,6 @@ export const Card = ({board_id, name, address, gender, age, phone}) => {
 
     return (
         <div className="card-wrapper" onClick={() => {
-            //navigate(`/board/${board_id}`)
             navigate(`/user/${board_id}`)
         }}>
             <div className="card-body-img">
@@ -52,13 +64,15 @@ export const Card = ({board_id, name, address, gender, age, phone}) => {
             </div>
             <div className="card-body-text">
                 <div className="card-body-text-title">{name}</div>
-                <div className="card-body-text-content">{address}</div>
+                <div className="card-body-text-content">나이 : {age}세</div>
+                <div className="card-body-text-content">성별 : {gender1}</div>
+                <div className="card-body-text-content">주소 : {address}</div>
                 <div className="card-body-text-content">{phone}</div>
             </div>
 
             <div className="card-footer">
-                <div className="username">{name}</div>
-                <div className="date">{gender}</div>
+                <div className="username">{managerData.name}</div>
+                <div className="date">{managerData.center_name}</div>
             </div>
         </div>
     );

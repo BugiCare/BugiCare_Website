@@ -11,43 +11,33 @@ import moment from "moment";
 
 import Tables from "../components/Tables"
 import {Card} from "../components/Card";
+import axios from "axios";
+
+const url="http://15.164.7.163:8080";
+//const url="http://localhost:8080";
+console.log("url = ",url);
+
 const MyList = () => {
-    const [pageCount, setPageCount] = useState(0);
-    const [boardList, setBoardList] = useState([]);
-    const [searchParams, setSearchParams] = useSearchParams();
-    // user의 id를 알아내기 위해 token 가져오기
-    const token = useSelector(state => state.Auth.token);
-    const [isAuth, setIsAuth] = useState(false);
+    const [myUserList, setMyUserList] = useState([]);
     const [name, setName] = useState("");
 
+
+
+    const getMyUserData = async () => {
+        const {data} = await axios.get(`${url}/myUser?id=1`);
+        return data;
+    }
+    const getManagerData = async () => {
+        const {data} = await axios.get(`${url}/manager/1`);
+        return data.name;
+    }
     useEffect(() => {
-        // 페이지에 해당하는 게시물 가져오기
-        const getBoardList = async () => {
-            const page_number = searchParams.get("page");
-            const user_id = jwtUtils.getId(token);
-            // 한 페이지에 원하는 개수 만큼 가져오기 위한 url. 테이블에서는 사용 안함
-            //const {data} = await api.get(`/api/board/user/list?page_number=${page_number}&page_size=4&user_id=${user_id}`);
-            const {data} = await api.get(`/api/board/user/list`);
-            return data;
-        }
-        // 현재 페이지에 해당하는 게시물로 상태 변경하기
-        getBoardList().then(result => setBoardList(result));
-        // 게시물 전체 갯수 구하기
-        const getTotalBoard = async () => {
-            const user_id = jwtUtils.getId(token);
-            const {data} = await api.get(`/api/board/user/count/${user_id}`);
-            return data.total;
-        }
-        // 페이지 카운트 구하기: (전체 board 갯수) / (한 페이지 갯수) 결과 올림
-        getTotalBoard().then(result => setPageCount(Math.ceil(result / 4)));
+        getMyUserData().then(result => setMyUserList(result));
+        getManagerData().then(result => setName(result));
+    }, [])
+    console.log("내관리 리스트 = ",myUserList)
 
 
-        if (jwtUtils.isAuth(token)) {
-            setIsAuth(true);
-            setName(jwtUtils.getUser(token));
-        } else {
-            setIsAuth(false);
-        }}, [token]);
 
 
     return (
@@ -61,24 +51,21 @@ const MyList = () => {
                                   img_url={"image/default-user-image.png"}/>
                 </div>
                 <div className="myList-table">
-                    {boardList.length !=0 ?
-                        <Tables userList={boardList}/>
+                    {/*{myUserList.length !=0 ?
+                        <Tables userList={myUserList}/>
                         : null
-                    }
+                    }*/}
+
+                    <Tables userList={myUserList}/>
+
+                   {/*{myUserList.map((item) => (
+                        <Tables userList={item}/>
+
+                    ))}*/}
                </div>
 
             </div>
-            {/*<div className="myList-footer">
-                페이지네이션: count에 페이지 카운트, page에 페이지 번호 넣기
-                <Pagination
-                    variant="outlined" color="primary" page={Number(searchParams.get("page"))}
-                    count={pageCount} size="large"
-                    onChange={(e, value) => {
-                        window.location.href = `/myboard-list?page=${value}`;
-                    }}
-                    showFirstButton showLastButton
-                />
-            </div>*/}
+
         </div>
     )
 }

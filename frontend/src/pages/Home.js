@@ -4,8 +4,8 @@ import axios from "axios";
 import Video from "./Video";
 
 
-//const url="http://15.164.7.163:8080";
-const url="http://localhost:8080";
+const url="http://15.164.7.163:8080";
+//const url="http://localhost:8080";
 console.log("url = ",url);
 
 const Home = () => {

@@ -46,6 +46,7 @@ const Header = () => {
     // 비동기로 처리!
     const logout = async () => {
         await dispatch(setToken(""));
+        //setIsManager(false);
         alert("로그아웃 되었습니다😎");
         navigate("/");
     };

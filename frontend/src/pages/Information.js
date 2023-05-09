@@ -4,6 +4,10 @@ import Comments from "../components/Comments";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 
+const url="http://15.164.7.163:8080";
+//const url="http://localhost:8080";
+console.log("url = ",url);
+
 const Information = (data)=>{
     const [item,setItem]=useState(data)
     const [profileImg,setProfileImg]=useState("");
@@ -12,7 +16,7 @@ const Information = (data)=>{
     console.log("정보 데이터",data.data.id)
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/userImage/${data.data.id}`,{responseType:'blob',})
+        axios.get(`${url}/userImage/${data.data.id}`,{responseType:'blob',})
             .then(response=>{
                 console.log("33333",response);
                 const imageBlob =new Blob([response.data]);

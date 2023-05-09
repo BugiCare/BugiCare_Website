@@ -34,8 +34,6 @@ const Board = () => {
     useEffect(() => {
         const getBoard = async () => {
             const {data} = await axios.get(`${url}/user/${board_id}`);
-
-            console.log("!!!!!sssss!!",data);
             return data;
         }
         getBoard().then(result => setBoard(result)).then(() => setIsLoaded(true));
@@ -43,10 +41,8 @@ const Board = () => {
     }, [])
 
     return (
-        /*<React.Fragment>*/
         <div className="board-container">
             <Sidebar/>
-
             {isLoaded && (
                 <div className="board-wrapper">
                     {/*<Sidebar/>*/}
