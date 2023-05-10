@@ -6,34 +6,39 @@ import api from "../utils/api";
 import {jwtUtils} from "../utils/jwtUtils";
 import TextArea from "../components/TextArea";
 import {Button} from "@mui/material";
-import "../css/addBoard.scss";
+import "../css/addUser.scss";
 import {toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const AddBoard = () => {
+const AddUser = () => {
     const token = useSelector(state => state.Auth.token);
     const navigate = useNavigate();
 
     // 게시판 제목, 내용, 사진
     const [name, setName] = useState("");
     const [address, setAddress] = useState("");
-    const [content, setContent] = useState("");
+    const [age, setAge] = useState("");
+    const [gender, setGender] = useState("");
+    const [phone, setPhone] = useState("");
+
     const [image, setImage] = useState({
         image_file: "",
         preview_URL: "image/default_image.png",
     });
     const canSubmit = useCallback(() => {
-        return image.image_file !== "" && content !== "" && name !== "" && address !== "";
-    }, [image, name,address, content]);
+        return image.image_file !== "" && age !== "" && name !== "" && address !== ""&& gender !== ""&& phone !== "";
+    }, [image, name,address, age,gender,phone]);
 
     const handleSubmit = useCallback(async () => {
         try{
             const formData = new FormData();
             formData.append("name", name);
             formData.append("address", address);
-            formData.append("content", content);
+            formData.append("phone", phone);
+            formData.append("age", age);
+            formData.append("gender", gender);
             formData.append("file", image.image_file);
-            formData.append("user_id", jwtUtils.getId(token));
+            formData.append("manager_id", jwtUtils.getId(token));
 
             await api.post("/api/board", formData);
             window.alert("😎등록이 완료되었습니다😎");
@@ -52,7 +57,7 @@ const AddBoard = () => {
     return (
         <div className="addBoard-wrapper">
             <div className="addBoard-header">
-                등록하기 🖊️
+                유저 등록하기 🖊️
             </div>
             <div className="submitButton">
                 {canSubmit() ? (
@@ -75,10 +80,10 @@ const AddBoard = () => {
             </div>
             <div className="addBoard-body">
                 <ImageUploader setImage={setImage} preview_URL={image.preview_URL} type="user" />
-                <TextArea setName={setName}setAddress={setAddress} setContent={setContent} name={name} address={address} content={content}/>
+                <TextArea setName={setName}setAddress={setAddress} setPhonet={setPhone}setGender={setGender}setAge={setAge} name={name}gender={gender}age={age} address={address} phone={phone}/>
             </div>
         </div>
     );
 }
 
-export default AddBoard;
+export default AddUser;

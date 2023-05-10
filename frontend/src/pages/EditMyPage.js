@@ -53,7 +53,7 @@ const EditMyPage = () => {
             <div className="addBoard-wrapper">
                 <div className="addBoard-body">
                     <ImageUploader setImage={setImg} preview_URL={img.preview_URL} type="manager" />
-                    <TextArea auth={authority}setName={setName} setAddress={setCenter} setContent={setPhone} name={name} address={center} content={phone}/>
+                    <TextArea auth={authority}setName={setName} setCenter={setCenter} setPhone={setPhone} name={name} address={center} phone={phone}/>
                 </div>
             </div>
 

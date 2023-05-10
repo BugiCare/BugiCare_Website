@@ -5,7 +5,7 @@ import ImageUploader from "../components/ImageUploader";
 import api from "../utils/api";
 import TextArea from "../components/TextArea";
 import {Button} from "@mui/material";
-import "../css/addBoard.scss";
+import "../css/addUser.scss";
 import axios from "axios";
 import {toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

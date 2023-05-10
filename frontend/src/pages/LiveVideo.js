@@ -42,7 +42,7 @@ const LiveVideo = () => {
 
     return (
         <div>
-            <iframe src={`${imageData}`}/>
+            <iframe style={{"width":"500px","height":"500px"}} src={`http://192.168.1.3:8090/?action=stream`}/>
             <div>
                 <ProfilePhoto src={`${imageData}`} />
                 <ProfilePhoto source={{uri:`${imageData}`}} resizeMode="contain"/>

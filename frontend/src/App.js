@@ -6,12 +6,14 @@ import Home from "./pages/Home";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import PrivateRoute from "./routes/PrivateRoute";
-import AddBoard from "./pages/AddBoard";
+import AddUser from "./pages/AddUser";
 import BoardList from "./pages/BoardList";
 //import MyBoardList from "./pages/MyBoardList";
 import Board from "./pages/Board";
 import EditBoard from "./pages/EditBoard";
-import MyPage from "./pages/EditMyPage";
+//import MyPage from "./pages/EditMyPage";
+import MyPage from "./pages/EditMyPage1";
+
 import MyList from "./pages/MyList";
 
 const App = () => {
@@ -31,7 +33,7 @@ const App = () => {
                 <Route path="/user/:board_id" element={<Board/>}/>
                 {/*<Route path="/allUser" element={<BoardList/>}/>*/}
                 <Route path="/pageUser" element={<BoardList/>}/>
-                <Route path="/add-board" element={<AddBoard/>}/>
+                <Route path="/add-board" element={<AddUser/>}/>
                 <Route path="/myboard-list" element={<MyList/>}/>
 
                 <Route path="/edit-board/:board_id" element={<EditBoard/>}/>
@@ -41,7 +43,7 @@ const App = () => {
                 <Route
                     path="/add-board"
                     element={
-                        <PrivateRoute path="/add-board" component={AddBoard}/>
+                        <PrivateRoute path="/add-board" component={AddUser}/>
                     }
                 />
                 <Route
