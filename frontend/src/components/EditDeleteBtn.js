@@ -14,7 +14,7 @@ const EditDeleteBtn =({item,name})=>{
     let USERID = "";
     switch (name){
         case "board":
-            USERID = item.data.id;
+            USERID = item.id;
             break;
         case "comment":
             USERID = item.user.id;
@@ -23,12 +23,12 @@ const EditDeleteBtn =({item,name})=>{
     const navigate = useNavigate();
     const token = useSelector(state => state.Auth.token);
     console.log("딜리트 버튼 아이디 식별 =",USERID);
-    console.log("카테고리",item);
+    //console.log("카테고리",item);
 
     return(
         <div className="comments-wrapper">
             {
-                jwtUtils.isAuth(token) && jwtUtils.getId(token) === USERID &&
+                /*jwtUtils.isAuth(token) && jwtUtils.getId(token) === USERID &&*/
                 <div className="comment-edit-delete-button">
                     <Button
                         variant="outlined" color="error" endIcon={<DeleteForeverOutlinedIcon/>}

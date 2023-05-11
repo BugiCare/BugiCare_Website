@@ -32,19 +32,20 @@ const LiveVideo = () => {
     };
     useInterval(() => {
         //getImageData() ;
-    }, 5000);
+    }, 1000);
     const getImageData = () => {
         axios.get('http://3.36.218.186:5000/cctv').then(json => {
             const img = json.data;
+            //console.log("######",img)
+
             setImageData(`data:image/png;base64,${img.img}`);
         })
     }
-
     return (
         <div>
-            <iframe style={{"width":"500px","height":"500px"}} src={`http://192.168.1.3:8090/?action=stream`}/>
+            {/*<iframe style={{"width":"500px","height":"500px"}} src={`http://192.168.1.3:8090/?action=stream`}/>*/}
             <div>
-                <ProfilePhoto src={`${imageData}`} />
+                <img src={`${imageData}`} />
                 <ProfilePhoto source={{uri:`${imageData}`}} resizeMode="contain"/>
             </div>
         </div>

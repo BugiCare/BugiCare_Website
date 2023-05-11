@@ -25,20 +25,26 @@ const Board = () => {
     // URL 파라미터 받기 - board의 id
     const {board_id} = useParams();
     const [board, setBoard] = useState({});
+    const [managerData,setManagerData]=useState()
+
     const [isLoaded, setIsLoaded] = useState(false);
     const token = useSelector(state => state.Auth.token);
     const navigate = useNavigate();
     // modal이 보이는 여부 상태
     // board 가져오기
 
+
+
+console.log(board_id,board)
     useEffect(() => {
-        const getBoard = async () => {
+        const getUser = async () => {
             const {data} = await axios.get(`${url}/user/${board_id}`);
             return data;
         }
-        getBoard().then(result => setBoard(result)).then(() => setIsLoaded(true));
-
+        getUser().then(result => setBoard(result)).then(() => setIsLoaded(true));
     }, [])
+
+
 
     return (
         <div className="board-container">
@@ -46,7 +52,7 @@ const Board = () => {
             {isLoaded && (
                 <div className="board-wrapper">
                     {/*<Sidebar/>*/}
-                    <Information data={board}/>
+                    <Information userData={board}/>
                 </div>
             )}
 

@@ -5,6 +5,7 @@ import "../css/sidebar.scss"
 import styled from "styled-components";
 const Sidebar =({childern}) =>{
     const [isHovering, setIsHovering] = useState(0);
+    const [isClick, setIsClick] = useState(0);
 
 
     const {board_id} = useParams();
@@ -13,25 +14,25 @@ const Sidebar =({childern}) =>{
     const toggle=()=>setIsOpen(!isOpen)
     const menuItem=[
         {
-            id:2,
+            id:1,
             path:`/user/${board_id}`,
             name:"information",
             icon:<FaUser/>
         },
         {
-            id:3,
+            id:2,
             path:`/user/${board_id}`,
             name:"analysis",
             icon:<FaChartLine/>
         },
         {
-            id:4,
+            id:3,
             path:`/user/${board_id}`,
             name:"Video",
             icon:<FaVideo/>
         },
     ]
-    console.log(isHovering,menuItem.id)
+    //console.log("@@@@@",isHovering,isClick)
 
     return(
         <div className="sidebar-container">
@@ -43,6 +44,7 @@ const Sidebar =({childern}) =>{
                 {
                     menuItem.map((item,index)=>(
                         <NavLink
+                            onClick={()=>{setIsClick(item.id);}}
                             onMouseOver={() => {setIsHovering(1);}}
                             onMouseOut={() => setIsHovering(0)}
                             to={item.path} key={index} className="link" activeclassName="active">
