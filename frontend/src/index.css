@@ -29,6 +29,12 @@
     font-size: 45%;
   }
 }
+
+@font-face {
+  font-family: "BMJUA";
+  src: url(../src/resource/font/BMJUA.ttf)format("truetype");
+}
+
 body {
   margin: 0;
   padding-top: 10rem;
