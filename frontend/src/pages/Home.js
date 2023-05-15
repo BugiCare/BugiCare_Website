@@ -35,15 +35,13 @@ const Home = () => {
     },[])
     return (
         <div className="home-wrapper">
-                <div className="home-title">
-                    <img style={{maxWidth: '100%' }} src={logo}/>
-                    <br/>
-                    <span>BugiCare 부기케어 </span>에 오신걸 환영합니다
-                </div>
-
-                <Video/>
-                <div className="my-website">
-                    <div className="my-website-title">전체 담당 인원 : {allNum} 명</div>
+            <div className="home-title">
+                <img style={{maxWidth: '100%' }} src={logo}/>
+                <br/>
+                <span>BugiCare 부기케어 </span>에 오신걸 환영합니다
+            </div>
+            <div className="my-website">
+                <div className="my-website-title">전체 담당 인원 : {allNum} 명</div>
                 <div className="my-website-title">내 담당 인원  : {myNum} 명</div>
                 </div>
         </div>

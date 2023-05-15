@@ -1,10 +1,11 @@
-import {Pagination} from "@mui/material";
+import {IconButton, Pagination} from "@mui/material";
 import {Card} from "../components/Card";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {useSearchParams} from "react-router-dom";
 import "../css/boardList.scss";
 import moment from "moment";
+import{IoIdCardOutline,IoIdCardSharp,IoListSharp,IoAppsSharp} from "react-icons/io5"
 
 import React from 'react';
 import { ScrollMenu } from 'react-horizontal-scrolling-menu';
@@ -18,6 +19,8 @@ const BoardList = () => {
     const [pageCount, setPageCount] = useState(0);
     const [userList, setUserList] = useState([]);
     const [searchParams, setSearchParams] = useSearchParams();
+    const [isOpen1,setIsOpen1]=useState(false);
+    const [isOpen2,setIsOpen2]=useState(false);
 
     const getUserData = async () => {
         const page_number = searchParams.get("page");
@@ -35,6 +38,34 @@ const BoardList = () => {
 
     return (
         <div className="boardList-wrapper">
+            {/*<div className="icon-text">
+                <div className="a"style={{display:isOpen1 ?"block":"none"}}> 카드 형식</div>
+                <div className="a"style={{display:isOpen2 ?"block":"none"}}> 테이블 형식</div>
+
+            </div>*/}
+            <div className="board-icon">
+                <div className="a">정렬 방식 :</div>
+                <IconButton
+                    onMouseOver={() => {setIsOpen1(1);}}
+                    onMouseOut={() => {setIsOpen1(0);}}
+                >
+                    <div className="a"style={{display:isOpen1 ?"block":"none"}}> 카드 형식</div>
+                    <IoIdCardOutline/>
+                </IconButton>
+                <IconButton
+                    onMouseOver={() => {setIsOpen2(1);}}
+                    onMouseOut={() => {setIsOpen2(0);}}
+                >
+                    <div className="a"style={{display:isOpen2 ?"block":"none"}}> 테이블 형식</div>
+                    <IoListSharp/>
+                </IconButton>
+                {/*<button>
+                    <IoIdCardOutline/>
+
+                    <IoIdCardSharp/>
+                </button>*/}
+            </div>
+
             <div className="boardList-body">
                 {/*<ScrollMenu>
                     {boardList.map((item) => (
