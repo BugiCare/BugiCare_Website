@@ -10,16 +10,17 @@
 }
 
 .home-wrapper{
-  padding: 5rem 0;
+  background-color: white;
+  margin-left: 40px;
+  margin-right: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  //font-family: 'Noto Sans KR', sans-serif;
+  border-radius: 50px;
   font-family: 'BMJUA';
-
   .home-title{
     opacity: 0;
-    animation: smoothAppear 1s forwards;
+    animation: smoothAppear 1.5s forwards;
     animation-delay: 0.5s;
     margin: 15px 0;
     font-size: 2.4rem;
@@ -27,7 +28,6 @@
     color: midnightblue;
     span{
       font-size: 2.7rem;
-      //font-family: 'Pacifico', cursive;
       font-family: 'BMJUA';
     }
   }
@@ -50,7 +50,7 @@
     span{
       font-size: 1.8rem;
       font-weight: bold;
-      color: blue;
+      color: midnightblue;
     }
   }
   .my-website{

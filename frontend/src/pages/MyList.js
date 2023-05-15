@@ -42,9 +42,6 @@ const MyList = () => {
 
     return (
         <div className="myList-wrapper">
-            <div className="myList-header">
-                👨🏻‍🦳 내 관리 현황 👵🏻
-            </div>
             <div className="myList-body">
                 <div className="myList-profile">
                     <ProfileCard  managerName={name}

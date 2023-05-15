@@ -35,10 +35,6 @@ const BoardList = () => {
 
     return (
         <div className="boardList-wrapper">
-            <div className="boardList-header">
-                👨🏻‍🦳 전체 관리 현황 👵🏻
-            </div>
-
             <div className="boardList-body">
                 {/*<ScrollMenu>
                     {boardList.map((item) => (

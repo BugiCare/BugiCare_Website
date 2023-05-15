@@ -34,12 +34,23 @@
   font-family: "BMJUA";
   src: url(../src/resource/font/BMJUA.ttf)format("truetype");
 }
+@font-face {
+  font-family: "ChosunCentennial";
+  src: url(../src/resource/font/ChosunCentennial.ttf)format("truetype");
+}
+@font-face {
+  font-family: "MapoPeacefull";
+  src: url(../src/resource/font/MapoPeacefull.ttf)format("truetype");
+}
+@font-face {
+  font-family: "NanumSquareRound";
+  src: url(../src/resource/font/NanumSquareRoundR.ttf)format("truetype");
+}
 
 body {
   margin: 0;
   padding-top: 10rem;
-  //background-color: rgb(231, 235, 240);
-  background-color: rgb(240, 231, 231);
+  background-color: #d8ecff;
   /*font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
   'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
   sans-serif;
