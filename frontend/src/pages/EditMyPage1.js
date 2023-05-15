@@ -35,8 +35,8 @@ const EditMyPage1 = () => {
         });
     }, [])
     return(
-        <div className="boardList-wrapper">
-            <div className="boardList-header">
+        <div className="addBoard-wrapper">
+            <div className="addBoard-header">
                 👨🏻‍🦳 마이 페이지 👵🏻
             </div>
 

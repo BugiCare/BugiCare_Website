@@ -17,10 +17,16 @@ const Sidebar =(userData) =>{
 
     const {board_id} = useParams();
     const [isOpen,setIsOpen]=useState(false);
-    //const [isHover, setIsHover] = useState({1:0,2:0,3:0});
-    const [isHover, setIsHover] = useState([{ 1:0},{ 2:0}]);
 
-    console.log(isHover)
+
+    const [isHover1, setIsHover1] = useState(0);
+    const [isHover2, setIsHover2] = useState(0);
+    const [isHover3, setIsHover3] = useState(0);
+
+    /*for (const aa in isHover){
+        console.log(isHover[aa])
+    }*/
+    console.log(isHover1)
 
     const toggle=()=>setIsOpen(!isOpen)
     const menuItem=[
@@ -54,10 +60,19 @@ const Sidebar =(userData) =>{
                     menuItem.map((item,index)=>(
                         <NavLink
                             onClick={()=>{setIsClick(item.id);}}
-                            onMouseOver={()=>setIsHover(item.id,1)}
-                            onMouseOut={() => setIsHover(item.id,0)}
+
+                            onMouseOver={ ()=>item.id=== 1 ?setIsHover1(1):item.id=== 2 ?setIsHover2(1):item.id=== 3 ?setIsHover3(1):null}
+                            onMouseOut={ ()=>item.id=== 1 ?setIsHover1(0):item.id=== 2 ?setIsHover2(0):item.id=== 3 ?setIsHover3(0):null}
+
                             to={item.path} key={index} className="link" activeclassName="active">
-                            <div style={{display:isHover[item.id] ?"block":"none"}} className="link-text">{item.name}</div>
+                            {
+                                isOpen==1 ?(<div style={{display:isOpen?"block":"none"}} className="link-text">{item.name}</div>):
+                                    item.id===1?<div style={{display:isHover1?"block":"none"}} className="link-text">{item.name}</div>
+                                        :item.id===2?<div style={{display:isHover2?"block":"none"}} className="link-text">{item.name}</div>
+                                            :item.id===3?<div style={{display:isHover3?"block":"none"}} className="link-text">{item.name}</div>
+                                                :null
+
+                            }
                             <div className="icon">{item.icon}</div>
                         </NavLink>
                     ))
