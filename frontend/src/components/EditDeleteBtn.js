@@ -23,7 +23,7 @@ const EditDeleteBtn =({item,name})=>{
     const navigate = useNavigate();
     const token = useSelector(state => state.Auth.token);
     console.log("딜리트 버튼 아이디 식별 =",USERID);
-    //console.log("카테고리",item);
+    console.log("카테고리",item);
 
     return(
         <div className="comments-wrapper">
@@ -44,7 +44,7 @@ const EditDeleteBtn =({item,name})=>{
                         variant="outlined" endIcon={<BuildOutlinedIcon/>}
                         onClick={() => {
                             if(name=="board"){
-                                navigate(`/edit-board/${item.data.id}`)
+                                navigate(`/edit-board/${item.id}`)
                             }
 
                         }}

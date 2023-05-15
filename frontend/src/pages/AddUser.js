@@ -59,6 +59,7 @@ const AddUser = () => {
             <div className="addBoard-header">
                 유저 등록하기 🖊️
             </div>
+            <div className="addBoard-box">
             <div className="submitButton">
                 {canSubmit() ? (
                     <Button
@@ -80,7 +81,8 @@ const AddUser = () => {
             </div>
             <div className="addBoard-body">
                 <ImageUploader setImage={setImage} preview_URL={image.preview_URL} type="user" />
-                <TextArea setName={setName}setAddress={setAddress} setPhonet={setPhone}setGender={setGender}setAge={setAge} name={name}gender={gender}age={age} address={address} phone={phone}/>
+                <TextArea setName={setName}setAddress={setAddress} setPhone={setPhone}setGender={setGender}setAge={setAge} name={name}gender={gender}age={age} address={address} phone={phone}/>
+            </div>
             </div>
         </div>
     );

@@ -48,7 +48,7 @@ console.log(board_id,board)
 
     return (
         <div className="board-container">
-            <Sidebar/>
+            <Sidebar userData={board}/>
             {isLoaded && (
                 <div className="board-wrapper">
                     {/*<Sidebar/>*/}

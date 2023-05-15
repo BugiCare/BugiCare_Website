@@ -3,6 +3,7 @@ import ImageUploader from "../components/ImageUploader";
 import TextArea from "../components/TextArea";
 import axios from "axios";
 import "../css/EditprofileCard.scss";
+import {Button} from "@mui/material";
 
 const url="http://15.164.7.163:8080";
 //const url="http://localhost:8080";
@@ -39,10 +40,22 @@ const EditMyPage1 = () => {
                 👨🏻‍🦳 마이 페이지 👵🏻
             </div>
 
-            <div className="addBoard-wrapper">
-                <div className="addBoard-body">
+            <div className="editBoard-wrapper">
+                <div className="editBoard-body">
+                    <div className="edit-profile-button">
+                        <div className="submitButton">
+                            <Button
+                                //onClick={handleSubmit}
+                                className="success-button"
+                                variant="outlined"
+                            >
+                                저장하기😃
+                            </Button>
+                        </div>
+                    </div>
                     {/*<ImageUploader setImage={setImg} preview_URL={img.preview_URL} type="manager" />*/}
                     <div className="edit-profile-wrapper">
+
                         <div className="edit-profile-body-img">
                             {/*<img src={img.preview_URL}/>*/}
                             <ImageUploader setImage={setImg} preview_URL={img.preview_URL} type="user" />
@@ -79,12 +92,13 @@ const EditMyPage1 = () => {
                                     placeholder="핸드폰 번호를 입력하세요"
                                     value={phone}/>
                             </div>
+
                         </div>
 
-                        {/*<div className="edit-profile-footer">
-                            <div className="date">{}</div>
-                        </div>*/}
+
+
                     </div>
+
                     {/*<TextArea auth={authority}
                               setName={setName}
                               setAddress={setCenter}

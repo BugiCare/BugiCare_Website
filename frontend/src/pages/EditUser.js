@@ -10,49 +10,49 @@ import axios from "axios";
 import {toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
-const EditBoard = () => {
+const url="http://15.164.7.163:8080";
+//const url="http://localhost:8080";
+console.log("url = ",url);
+const EditUser = () => {
     const token = useSelector(state => state.Auth.token);
     const navigate = useNavigate();
-    // URI 파라미터 가져오기
     const {board_id} = useParams();
-    // 게시판 제목, 내용, 사진
     const [name, setName] = useState("");
     const [address, setAddress] = useState("");
-    const [content, setContent] = useState("");
+    const [age, setAge] = useState("");
+    const [gender, setGender] = useState("");
+    const [phone, setPhone] = useState("");
+
     const [image, setImage] = useState({
         image_file: "",
         preview_URL: "image/default_image.png",
     });
 
-    // 사용자가 직전에 등록한 게시물의 상태를 그대로 보여주기 위해
-    // 컴포넌트가 마운트되고 URI 파라미터에 해당하는 board를 가져와서
-    // title, content, image의 상태를 바꿔줌
     useEffect(() => {
         const getBoard = async () => {
-            const {data} = await axios.get(`/api/board/${board_id}`);
+            const {data} = await axios.get(`${url}/user/${board_id}`);
+            console.log(data)
             return data;
         }
         getBoard().then((result) => {
             setName(result.name);
             setAddress(result.address);
-            setContent(result.content);
-            // 이미지는 파일을 불러올 필요가 없이 미리보기 url만 가져온다.
-            // 이미지를 선택하지 않고 올리면 db에 저장되어 있는 이미지를 그대로 사용!
-            setImage({...image, preview_URL: `/api/image/view/${board_id}`})
+            setGender(result.gender);
+            setAge(result.age);
+            setPhone(result.phone);
+            setImage({...image, preview_URL: `${url}/userImage/${board_id}`})
         });
     }, [])
 
     const canSubmit = useCallback(() => {
-        return content !== "" && name !== "" && address !== "";
-    }, [image, name,address, content]);
+        return name !== "" && address !== "" && age !== ""&& phone !== ""&& gender !== "";
+    }, [image, name,address,age,phone,gender]);
 
     const handleSubmit = useCallback(async () => {
         try {
             const formData = new FormData();
             formData.append("name", name);
             formData.append("address", address);
-            formData.append("content", content);
             // 이미지를 선택했을 때만 formdata에 넣음
             formData.append("file", image.image_file);
             // 수정할 땐 board_id를 보내자
@@ -75,6 +75,8 @@ const EditBoard = () => {
             <div className="addBoard-header">
                 수정하기 🖊️
             </div>
+            <div className="addBoard-box">
+
             <div className="submitButton">
                 {canSubmit() ? (
                     <Button
@@ -96,10 +98,13 @@ const EditBoard = () => {
             </div>
             <div className="addBoard-body">
                 <ImageUploader setImage={setImage} preview_URL={image.preview_URL} type="user" />
-                <TextArea setName={setName} setAddress={setAddress} setContent={setContent} name={name} address={address} content={content}/>
+
+                <TextArea setName={setName}setAddress={setAddress} setPhone={setPhone}setGender={setGender}setAge={setAge} name={name}gender={gender}age={age} address={address} phone={phone}/>
+
+            </div>
             </div>
         </div>
     );
 }
 
-export default EditBoard;
+export default EditUser;

@@ -37,6 +37,12 @@
       //flex-wrap: wrap;
     }
     .myList-table{
+      &:hover {
+        box-shadow: rgba(0, 0, 0, 0.9) 0px 22px 70px 4px;
+      }
+      border-radius: 30px;
+      transition: width 1s, height 1s, box-shadow 1s;
+
       width: 700px;
       align-items: center;
       justify-content: center;

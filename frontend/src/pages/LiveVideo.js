@@ -1,17 +1,19 @@
 import React, {useRef,useEffect, useState} from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import Sidebar from "../components/Sidebar";
 
 const ProfilePhoto = styled.img`
   flex: 1;
-  height: 150px;
+  height: 350px;
   align-items: flex-start;
   width: 100%;
 `;
 
 const LiveVideo = () => {
-    const [imageData, setImageData] = useState('');
+    const [imageData, setImageData] = useState("./image/default_image.png");
 
+    console.log("라이브 비디오 컴포넌트",imageData)
 
     const useInterval = (callback, delay) => {
         const savedCallback = useRef(null);
@@ -41,14 +43,20 @@ const LiveVideo = () => {
             setImageData(`data:image/png;base64,${img.img}`);
         })
     }
+
     return (
-        <div>
-            {/*<iframe style={{"width":"500px","height":"500px"}} src={`http://192.168.1.3:8090/?action=stream`}/>*/}
+        <div className="board-container">
+            <Sidebar/>
+        <div className="board-wrapper">
+
             <div>
-                <img src={`${imageData}`} />
+                {/*<img src={`${imageData}`} />*/}
                 <ProfilePhoto source={{uri:`${imageData}`}} resizeMode="contain"/>
             </div>
+
         </div>
+        </div>
+
     )
 }
 export default LiveVideo;
