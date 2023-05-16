@@ -5,7 +5,7 @@ import Sidebar from "../components/Sidebar";
 
 const ProfilePhoto = styled.img`
   flex: 1;
-  height: 350px;
+  height: 450px;
   align-items: flex-start;
   width: 100%;
 `;
@@ -33,7 +33,7 @@ const LiveVideo = () => {
         }, []);
     };
     useInterval(() => {
-        //getImageData() ;
+        getImageData() ;
     }, 1000);
     const getImageData = () => {
         axios.get('http://3.36.218.186:5000/cctv').then(json => {
@@ -50,8 +50,8 @@ const LiveVideo = () => {
         <div className="board-wrapper">
 
             <div>
-                {/*<img src={`${imageData}`} />*/}
-                <ProfilePhoto source={{uri:`${imageData}`}} resizeMode="contain"/>
+                <ProfilePhoto src={`${imageData}`} />
+                {/*<ProfilePhoto source={{uri:`${imageData}`}} resizeMode="contain"/>*/}
             </div>
 
         </div>

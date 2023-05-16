@@ -53,7 +53,7 @@ const MyList = () => {
                         : null
                     }*/}
 
-                    <Tables userList={myUserList}/>
+                    <Tables userList={myUserList} area="my"/>
 
                    {/*{myUserList.map((item) => (
                         <Tables userList={item}/>

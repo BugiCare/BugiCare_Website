@@ -17,7 +17,7 @@ const url="http://15.164.7.163:8080";
 //const url="http://localhost:8080";
 console.log("url = ",url);
 
-const Tables = ({userList})=> {
+const Tables = ({userList,area})=> {
     const TableRows = ({ children,event }) => {
         const navigate = useNavigate();
         const goRouteId = (board_id) => {
@@ -66,7 +66,11 @@ const Tables = ({userList})=> {
             <Table stickyHeader>
                 <TableHead>
                     <TableRow>
+                        {area=="my"?
                         <TableCell className="table-head" align="center" colSpan="3"> 내 관리 리스트 </TableCell>
+                            :
+                            <TableCell className="table-head" align="center" colSpan="3"> 전체 관리 리스트 </TableCell>
+                        }
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -90,12 +94,6 @@ const Tables = ({userList})=> {
                             <TableCell className="table-body" align="center">관련 데이터 없음</TableCell>
                         </TableRows>
                     }
-
-                    {/*<TableRow>
-                        <TableCell align="center">{<img style={{width:"30%"}} src={img_url}/>}</TableCell>
-                        <TableCell align="center">{userList.name}</TableCell>
-                        <TableCell align="center">{userList.address}</TableCell>
-                    </TableRow>*/}
                 </TableBody>
             </Table>
             </TableContainer>

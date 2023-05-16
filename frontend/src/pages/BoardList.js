@@ -5,26 +5,34 @@ import axios from "axios";
 import {useSearchParams} from "react-router-dom";
 import "../css/boardList.scss";
 import moment from "moment";
-import{IoIdCardOutline,IoIdCardSharp,IoListSharp,IoAppsSharp} from "react-icons/io5"
+import{IoIdCardOutline,IoIdCardSharp,IoListSharp,IoAppsShar,IoGridSharp} from "react-icons/io5"
 
 import React from 'react';
 import { ScrollMenu } from 'react-horizontal-scrolling-menu';
 import { LeftArrow, RightArrow } from './Arrow';
 import styled from 'styled-components'
+import Tables from "../components/Tables";
 
 const url="http://15.164.7.163:8080";
 //const url="http://localhost:8080";
 console.log("url = ",url);
 const BoardList = () => {
     const [pageCount, setPageCount] = useState(0);
-    const [userList, setUserList] = useState([]);
-    const [searchParams, setSearchParams] = useSearchParams();
-    const [isOpen1,setIsOpen1]=useState(false);
-    const [isOpen2,setIsOpen2]=useState(false);
+    const [cardUserList, setCardUserList] = useState([]);
+    const [tableUserList, setTableUserList] = useState([]);
 
-    const getUserData = async () => {
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    const [mode, setMode] = useState(1);
+console.log(mode);
+    const getUserDataForCard = async () => {
         const page_number = searchParams.get("page");
-        const {data} = await axios.get(`${url}/pageUser?page=${page_number}&offset=4`);
+        const {data} = await axios.get(`${url}/pageUser?page=${page_number}&offset=3`);
+        //const {data} = await axios.get(`${url}/allUser`);
+        return data;
+    }
+    const getUserDataForTable = async () => {
+        const {data} = await axios.get(`${url}/allUser`);
         return data;
     }
     const getTotalBoard = async () => {
@@ -32,39 +40,43 @@ const BoardList = () => {
         return data.length;
     }
     useEffect(() => {
-        getUserData().then(result => setUserList(result));
+        getUserDataForCard().then(result => setCardUserList(result));
+        getUserDataForTable().then(result => setTableUserList(result));
         getTotalBoard().then(result => setPageCount(Math.ceil(result / 4)));
     }, [])
 
     return (
-        <div className="boardList-wrapper">
-            {/*<div className="icon-text">
+        <div className="board-box">
+        {/*<div className="board-icon">
+            <IconButton
+                onMouseOver={() => {setIsOpen1(1);}}
+                onMouseOut={() => {setIsOpen1(0);}}
+            >
                 <div className="a"style={{display:isOpen1 ?"block":"none"}}> 카드 형식</div>
-                <div className="a"style={{display:isOpen2 ?"block":"none"}}> 테이블 형식</div>
+                <IoGridSharp style={{width:"70%"}}/>
+            </IconButton>
 
-            </div>*/}
-            <div className="board-icon">
-                <div className="a">정렬 방식 :</div>
-                <IconButton
-                    onMouseOver={() => {setIsOpen1(1);}}
-                    onMouseOut={() => {setIsOpen1(0);}}
-                >
-                    <div className="a"style={{display:isOpen1 ?"block":"none"}}> 카드 형식</div>
-                    <IoIdCardOutline/>
+            <IconButton
+                onMouseOver={() => {setIsOpen2(1);}}
+                onMouseOut={() => {setIsOpen2(0);}}
+            >
+                <div className="a"style={{display:isOpen2 ?"block":"none"}}> 테이블 형식</div>
+                <IoListSharp/>
+            </IconButton>
+        </div>*/}
+            <div className="board-subMenu">
+                <IconButton onClick={()=>setMode(1)}>
+                    <IoIdCardSharp/>
                 </IconButton>
-                <IconButton
-                    onMouseOver={() => {setIsOpen2(1);}}
-                    onMouseOut={() => {setIsOpen2(0);}}
-                >
-                    <div className="a"style={{display:isOpen2 ?"block":"none"}}> 테이블 형식</div>
+                <IconButton onClick={()=>setMode(2)}>
                     <IoListSharp/>
                 </IconButton>
-                {/*<button>
-                    <IoIdCardOutline/>
+                <IconButton onClick={()=>setMode(3)}>
+                    <IoGridSharp style={{width:"70%"}}/>
+                </IconButton>
 
-                    <IoIdCardSharp/>
-                </button>*/}
             </div>
+        <div className="boardList-wrapper">
 
             <div className="boardList-body">
                 {/*<ScrollMenu>
@@ -75,16 +87,19 @@ const BoardList = () => {
                         />
                     ))}
                 </ScrollMenu>*/}
-
-                {userList.map((item) => (
+                {mode==1?
+                    cardUserList.map((item) => (
                     <Card key={item.id} name={item.name} gender={item.gender}
                     age={item.age} address={item.address} phone={item.phone}
-                    board_id={item.id} manager_id ={item.manager_id}
-                    />
-                ))}
+                    board_id={item.id} manager_id ={item.manager_id}/>
+                    ))
+                    :
+                    <div className="boardList-table"><Tables userList={tableUserList} area="all"/></div>
+
+                }
             </div>
+            {mode==1?
             <div className="boardList-footer">
-                {/*페이지네이션: count에 페이지 카운트, page에 페이지 번호 넣기*/}
                 <Pagination
                     variant="outlined" color="primary" page={Number(searchParams.get("page"))}
                     count={pageCount} size="large"
@@ -93,8 +108,9 @@ const BoardList = () => {
                     }}
                     showFirstButton showLastButton
                 />
-            </div>
-        </div>
+            </div>:null
+            }
+        </div></div>
     )
 }
 const Container = styled.div`
