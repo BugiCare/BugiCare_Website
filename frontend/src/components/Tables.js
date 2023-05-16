@@ -69,22 +69,18 @@ const Tables = ({userList,area})=> {
                         {area=="my"?
                         <TableCell className="table-head" align="center" colSpan="3"> 내 관리 리스트 </TableCell>
                             :
-                            <TableCell className="table-head" align="center" colSpan="3"> 전체 관리 리스트 </TableCell>
+                            <TableCell className="table-head" align="center" colSpan="5"> 전체 관리 리스트 </TableCell>
                         }
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {userList.length !=0 ?
+                    {area=="my"?
+                    userList.length !=0 ?
                           userList.map((user,index)=>{
                                 const key = `upload-list-${index}`;
-                                console.log("$$",user.id)
-                                //imgId.push(user.id);
-                                //setImgId1(user.id);
-                                //getImage(user.id);
                                 return (
                                     <TableRows key={key} event={user.id}>
                                         <TableCell className="table-profile" align="center">{<img src={`${url}/userImage/${user.id}`}/>}</TableCell>
-
                                         <TableCell className="table-body" align="center">{user.name}</TableCell>
                                         <TableCell className="table-body1" align="left">{user.address}</TableCell>
                                     </TableRows>
@@ -93,6 +89,25 @@ const Tables = ({userList,area})=> {
                         <TableRows>
                             <TableCell className="table-body" align="center">관련 데이터 없음</TableCell>
                         </TableRows>
+                    :
+                        area=="all"?
+                            userList.length !=0 ?
+                                userList.map((user,index)=>{
+                                    const key = `upload-list-${index}`;
+                                    return (
+                                        <TableRows key={key} event={user.id}>
+                                            <TableCell className="table-profile" align="center">{<img src={`${url}/userImage/${user.id}`}/>}</TableCell>
+                                            <TableCell className="table-body" align="center">{user.name}</TableCell>
+                                            <TableCell className="table-body" align="center">{user.age}</TableCell>
+                                            <TableCell className="table-body" align="center">{user.gender=="MALE"?"남성":"여성"}</TableCell>
+                                            <TableCell className="table-body1" align="left">{user.address}</TableCell>
+                                        </TableRows>
+                                    )
+                                }) :
+                                <TableRows>
+                                    <TableCell className="table-body" align="center">관련 데이터 없음</TableCell>
+                                </TableRows>
+                                    :null
                     }
                 </TableBody>
             </Table>

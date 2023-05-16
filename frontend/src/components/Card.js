@@ -14,16 +14,6 @@ export const Card = ({board_id, name, address, gender, age, phone, manager_id}) 
     const navigate = useNavigate();
     const [managerData, setManagerData] = useState([]);
 
-    let gender1="";
-    switch (gender){
-        case "MALE" :
-            gender1="남성";
-            break;
-        case "FEMALE" :
-            gender1="여성";
-            break;
-    }
-
     const getImage = async () => {
         const {data} = await axios.get(`${url}/userImage/${board_id}`,{responseType:'blob',})
         return data;
@@ -54,7 +44,6 @@ export const Card = ({board_id, name, address, gender, age, phone, manager_id}) 
     },[])
 
 
-    console.log("33333",profileImg1);
     console.log("44dd444",profileImg);
 
     return (
@@ -67,7 +56,7 @@ export const Card = ({board_id, name, address, gender, age, phone, manager_id}) 
             <div className="card-body-text">
                 <div className="card-body-text-title">{name}</div>
                 <div className="card-body-text-content">나이 : {age}세</div>
-                <div className="card-body-text-content">성별 : {gender1}</div>
+                <div className="card-body-text-content">성별 : {gender=="MALE"?"남성":"여성"}</div>
                 <div className="card-body-text-content">주소 : {address}</div>
                 <div className="card-body-text-content">{phone}</div>
             </div>

@@ -12,7 +12,7 @@ import { ScrollMenu } from 'react-horizontal-scrolling-menu';
 import { LeftArrow, RightArrow } from './Arrow';
 import styled from 'styled-components'
 import Tables from "../components/Tables";
-
+import "../css/allTable.scss";
 const url="http://15.164.7.163:8080";
 //const url="http://localhost:8080";
 console.log("url = ",url);
@@ -46,24 +46,8 @@ console.log(mode);
     }, [])
 
     return (
-        <div className="board-box">
-        {/*<div className="board-icon">
-            <IconButton
-                onMouseOver={() => {setIsOpen1(1);}}
-                onMouseOut={() => {setIsOpen1(0);}}
-            >
-                <div className="a"style={{display:isOpen1 ?"block":"none"}}> 카드 형식</div>
-                <IoGridSharp style={{width:"70%"}}/>
-            </IconButton>
 
-            <IconButton
-                onMouseOver={() => {setIsOpen2(1);}}
-                onMouseOut={() => {setIsOpen2(0);}}
-            >
-                <div className="a"style={{display:isOpen2 ?"block":"none"}}> 테이블 형식</div>
-                <IoListSharp/>
-            </IconButton>
-        </div>*/}
+        <div className="boardList-wrapper">
             <div className="board-subMenu">
                 <IconButton onClick={()=>setMode(1)}>
                     <IoIdCardSharp/>
@@ -76,9 +60,6 @@ console.log(mode);
                 </IconButton>
 
             </div>
-        <div className="boardList-wrapper">
-
-            <div className="boardList-body">
                 {/*<ScrollMenu>
                     {boardList.map((item) => (
                         <Card key={item.id} username={item.user.username} date={moment(item.createdAt).add(9, "hour").format('YYYY-MM-DD')}
@@ -88,29 +69,32 @@ console.log(mode);
                     ))}
                 </ScrollMenu>*/}
                 {mode==1?
-                    cardUserList.map((item) => (
-                    <Card key={item.id} name={item.name} gender={item.gender}
-                    age={item.age} address={item.address} phone={item.phone}
-                    board_id={item.id} manager_id ={item.manager_id}/>
-                    ))
-                    :
+                    <>
+                        <div className="boardList-card">
+                            {cardUserList.map((item) => (
+                                <Card key={item.id} name={item.name} gender={item.gender}
+                                      age={item.age} address={item.address} phone={item.phone}
+                                      board_id={item.id} manager_id ={item.manager_id}/>))
+                            }
+                        </div>
+                        <div className="boardList-footer">
+                            <Pagination
+                                variant="outlined" color="primary" page={Number(searchParams.get("page"))}
+                                count={pageCount} size="large"
+                                onChange={(e, value) => {
+                                    window.location.href = `/pageUser?page=${value}`;
+                                }}
+                                showFirstButton showLastButton
+                            />
+                        </div>
+                    </>
+                    : mode==2?
                     <div className="boardList-table"><Tables userList={tableUserList} area="all"/></div>
+                        :null
 
                 }
-            </div>
-            {mode==1?
-            <div className="boardList-footer">
-                <Pagination
-                    variant="outlined" color="primary" page={Number(searchParams.get("page"))}
-                    count={pageCount} size="large"
-                    onChange={(e, value) => {
-                        window.location.href = `/pageUser?page=${value}`;
-                    }}
-                    showFirstButton showLastButton
-                />
-            </div>:null
-            }
-        </div></div>
+
+        </div>
     )
 }
 const Container = styled.div`

@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
-import {jwtUtils} from "../utils/jwtUtils";
-import {useSelector} from "react-redux";
 import ImageUploader from "../components/ImageUploader";
 import TextArea from "../components/TextArea";
 import axios from "axios";
+import "../css/EditprofileCard.scss";
+import {Button} from "@mui/material";
 
 const url="http://15.164.7.163:8080";
 //const url="http://localhost:8080";
@@ -17,18 +17,8 @@ const EditMyPage = () => {
         image_file: "",
         preview_URL: "image/default-user-image.png",
     });
-    const authority="manager"
-    /* 토큰 사용
-    const token = useSelector(state => state.Auth.token);
-    const [isAuth, setIsAuth] = useState(false);
-    useEffect(() => {
-        if (jwtUtils.isAuth(token)) {
-            setIsAuth(true);
-            setName(jwtUtils.getUser(token));
-        } else {
-            setIsAuth(false);
-        }}, [token]);
-        */
+    const authority="manager0"
+
     const getData = async () => {
         const {data} = await axios.get(`${url}/manager/1`);
         console.log("매니저 데이터 가져옴", data);
@@ -45,15 +35,77 @@ const EditMyPage = () => {
         });
     }, [])
     return(
-        <div className="boardList-wrapper">
-            <div className="boardList-header">
+        <div className="addBoard-wrapper">
+            <div className="addBoard-header">
                 👨🏻‍🦳 마이 페이지 👵🏻
             </div>
 
-            <div className="addBoard-wrapper">
-                <div className="addBoard-body">
-                    <ImageUploader setImage={setImg} preview_URL={img.preview_URL} type="manager" />
-                    <TextArea auth={authority}setName={setName} setCenter={setCenter} setPhone={setPhone} name={name} address={center} phone={phone}/>
+            <div className="editBoard-wrapper">
+                <div className="editBoard-body">
+                    <div className="edit-profile-button">
+                        <div className="submitButton">
+                            <Button
+                                //onClick={handleSubmit}
+                                className="success-button"
+                                variant="outlined"
+                            >
+                                저장하기😃
+                            </Button>
+                        </div>
+                    </div>
+                    {/*<ImageUploader setImage={setImg} preview_URL={img.preview_URL} type="manager" />*/}
+                    <div className="edit-profile-wrapper">
+
+                        <div className="edit-profile-body-img">
+                            {/*<img src={img.preview_URL}/>*/}
+                            <ImageUploader setImage={setImg} preview_URL={img.preview_URL} type="user" />
+
+                        </div>
+                        <div className="edit-profile-body-text">
+                            <div className="edit-profile-body-text-title">
+                                이름 : &nbsp;
+                                <input
+                                onChange={(e) => {
+                                    setName(e.target.value);
+                                }}
+                                className="edit-manager-input"
+                                placeholder="이름을 입력하세요"
+                                value={name}/>
+                            </div>
+                            <div className="edit-profile-body-text-title">
+                                소속 : &nbsp;
+                                <input
+                                    onChange={(e) => {
+                                        setCenter(e.target.value);
+                                    }}
+                                    className="edit-manager-input"
+                                    placeholder="센터 이름을 입력하세요"
+                                    value={center}/>
+                            </div>
+                            <div className="edit-profile-body-text-title">
+                                번호 : &nbsp;
+                                <input
+                                    onChange={(e) => {
+                                        setPhone(e.target.value);
+                                    }}
+                                    className="edit-manager-input"
+                                    placeholder="핸드폰 번호를 입력하세요"
+                                    value={phone}/>
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+
+                    {/*<TextArea auth={authority}
+                              setName={setName}
+                              setAddress={setCenter}
+                              setContent={setPhone}
+                              name={name}
+                              address={center}
+                              content={phone}/>*/}
                 </div>
             </div>
 

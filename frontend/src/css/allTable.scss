@@ -4,8 +4,8 @@
   //width : 100%;
   overflow-x:auto;
   border-radius: 30px;
-
   .table-head{
+
     font-weight: bold;
     font-size: 1.5rem;
     background-color:#9ec9ff;
@@ -22,13 +22,14 @@
     width: 80px;
   }
   .table-body{
+    height: 50px;
     font-weight: bold;
     font-size: 1.3rem;
     font-family: 'MapoPeacefull';
   }
   .table-body1{
     font-size: 1.3rem;
-    width: 300px;
+    width: 400px;
     font-family: 'MapoPeacefull';
   }
   img{

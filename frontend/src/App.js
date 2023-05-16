@@ -14,8 +14,7 @@ import Chart from "./pages/Chart";
 //import MyBoardList from "./pages/MyBoardList";
 import Board from "./pages/Board";
 import EditUser from "./pages/EditUser";
-//import MyPage from "./pages/EditMyPage";
-import MyPage from "./pages/EditMyPage1";
+import MyPage from "./pages/EditMyPage";
 
 import MyList from "./pages/MyList";
 
