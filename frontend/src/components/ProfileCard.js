@@ -5,6 +5,8 @@ export const ProfileCard = ({managerName,  img_url, date}) => {
     const navigate = useNavigate();
     return (
         <div className="profile-wrapper">
+            <div className="profile-header">경기도 남부 센터</div>
+
             <div className="profile-body-img">
                 <img src={img_url}/>
             </div>

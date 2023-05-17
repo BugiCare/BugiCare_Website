@@ -1,13 +1,5 @@
-@keyframes smoothAppear {
-  from {
-    opacity: 0;
-    transform: translate3d(0, -100%, 0);
-  }
-  to {
-    opacity: 1;
-    transform: translateZ(0);
-  }
-}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
 .boardList-wrapper{
   width: 90%;
   height: 70vh;
@@ -24,11 +16,37 @@
     justify-content: center;
     flex-wrap: wrap;
     opacity: 0;
-    animation: smoothAppear 1s forwards;
-    animation-delay: 1s;
+    animation: fadeIn ease-in 1;
+    animation-fill-mode: forwards;
+    animation-duration: 1s;
+    animation-delay: 0s;
+  }
+  .boardList-table{
+    width: 1000px;
+    margin: auto;
+    opacity: 0;
+    animation: fadeIn ease-in 1;
+    animation-fill-mode: forwards;
+    animation-duration: 1s;
+    animation-delay: 0s;
+  }
+  .boardList-note{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeIn ease-in 1;
+    animation-fill-mode: forwards;
+    animation-duration: 1s;
+    animation-delay: 0s;
   }
   .boardList-footer{
     margin: 1.5rem;
+    animation: fadeIn ease-in 1;
+    animation-fill-mode: forwards;
+    animation-duration: 1s;
+    animation-delay: 0s;
   }
 }
 
@@ -43,9 +61,3 @@
   padding-top: 20px;
 }
 
-.boardList-table{
-  width: 1000px;
-  margin: auto;
-  //padding-top: 30px;
-  //height: 1000px;
-}
