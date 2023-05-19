@@ -15,7 +15,7 @@ const EditMyPage = () => {
     const [phone, setPhone] = useState("");
     const [img, setImg] = useState({
         image_file: "",
-        preview_URL: "image/default-user-image.png",
+        preview_URL: "image/kim.jpeg",
     });
     const authority="manager0"
 
@@ -36,9 +36,9 @@ const EditMyPage = () => {
     }, [])
     return(
         <div className="addBoard-wrapper">
-            <div className="addBoard-header">
+            {/*<div className="addBoard-header">
                 👨🏻‍🦳 마이 페이지 👵🏻
-            </div>
+            </div>*/}
 
             <div className="editBoard-wrapper">
                 <div className="editBoard-body">

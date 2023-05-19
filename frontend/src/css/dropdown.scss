@@ -1,0 +1,30 @@
+.dropdown{
+  background-color: white;
+  width: 100px;
+  z-index: 10;
+  position: fixed;
+  top: 70px;
+  left: auto;
+  right: 66px;
+  padding: 5px 20px;
+  font-size: 1rem;
+  border-radius: 30px;
+  .dropdown-text{
+    width: content-box;
+    padding: 10px;
+    &:hover {
+      //width: fit-content;
+      width : content-box;
+      //background-color: gray;
+      border-radius: 30px;
+      color: navy;
+
+    }
+
+  }
+  .dropdown-item{
+    &:hover {
+      background-color: gray;
+    }
+  }
+}

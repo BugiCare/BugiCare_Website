@@ -58,7 +58,7 @@ export const Card = ({board_id, name, address, gender, age, phone, manager_id}) 
                 <div className="card-body-text-content">나이 : {age}세</div>
                 <div className="card-body-text-content">성별 : {gender=="MALE"?"남성":"여성"}</div>
                 <div className="card-body-text-content">주소 : {address}</div>
-                <div className="card-body-text-content">{phone}</div>
+                <div className="card-body-text-content">번호 : {phone}</div>
             </div>
 
             <div className="card-footer">

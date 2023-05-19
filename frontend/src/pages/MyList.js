@@ -45,7 +45,7 @@ const MyList = () => {
             <div className="myList-body">
                 <div className="myList-profile">
                     <ProfileCard  managerName={name}
-                                  img_url={"image/default-user-image.png"}/>
+                                  img_url={"image/kim.jpeg"}/>
                 </div>
                 <div className="myList-table">
                     {/*{myUserList.length !=0 ?

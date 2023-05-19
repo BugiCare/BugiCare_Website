@@ -11,7 +11,7 @@ const ProfilePhoto = styled.img`
 `;
 
 const LiveVideo = () => {
-    const [imageData, setImageData] = useState("./image/default_image.png");
+    const [imageData, setImageData] = useState("../../image/default_image.png");
 
     console.log("라이브 비디오 컴포넌트",imageData)
 
@@ -34,7 +34,7 @@ const LiveVideo = () => {
     };
     useInterval(() => {
         getImageData() ;
-    }, 1000);
+    }, 100000);
     const getImageData = () => {
         axios.get('http://3.36.218.186:5000/cctv').then(json => {
             const img = json.data;

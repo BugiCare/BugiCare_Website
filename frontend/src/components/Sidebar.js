@@ -3,7 +3,6 @@ import{FaUser,FaVideo, FaChartLine} from "react-icons/fa"
 import {NavLink, useParams} from "react-router-dom";
 import "../css/sidebar.scss"
 import styled from "styled-components";
-import Information from "../pages/Information";
 
 const url="http://15.164.7.163:8080";
 //const url="http://localhost:8080";

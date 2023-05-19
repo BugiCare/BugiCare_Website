@@ -56,9 +56,9 @@ const AddUser = () => {
 
     return (
         <div className="addBoard-wrapper">
-            <div className="addBoard-header">
+            {/*<div className="addBoard-header">
                 유저 등록하기 🖊️
-            </div>
+            </div>*/}
             <div className="addBoard-box">
             <div className="submitButton">
                 {canSubmit() ? (
