@@ -9,6 +9,8 @@ import {useNavigate} from "react-router-dom";
 import DisabledByDefaultOutlinedIcon from "@mui/icons-material/DisabledByDefaultOutlined";
 import axios from "axios";
 
+import { url } from '../globals';
+console.log("url = ",url);
 const EditDeleteBtn =({item,name})=>{
     const [show, setShow] = useState(false);
     let USERID = "";
@@ -85,13 +87,18 @@ const EditDeleteBtn =({item,name})=>{
                                 color="error"
                                 onClick={async () => {
                                     setShow(false);
-                                    await api.delete(`/api/${name}/${item.id}`);
                                     if(name=="board"){
+                                        await api.delete(`/api/${name}/${item.id}`);
                                         alert("게시글이 삭제되었습니다😎");
                                         window.location.href="/myboard-list?page=1"
                                     }
                                     if(name=="comment"){
                                         alert("댓글이 삭제되었습니다😎");
+                                        window.location.reload();
+                                    }
+                                    if(name=="tts"){
+                                        await api.delete(`${url}/TTS/${item.id}`);
+                                        alert("메시지가 삭제되었습니다😎");
                                         window.location.reload();
                                     }
                                 }}

@@ -25,8 +25,6 @@ const TTS = ({board_id}) => {
     // 현재 페이지, 전체 페이지 갯수
     const [TTSList, setTTSList] = useState([]);
 
-
-    const [commentList, setCommentList] = useState([]);
     useEffect(() => {
         const getTTSList = async () => {
             const {data} = await axios.get(`${url}/allTTS`);
@@ -37,11 +35,16 @@ const TTS = ({board_id}) => {
     }, [])
 
 
+    console.log(TTSList);
     const submit = useCallback(async () => {
         const formData = new FormData();
         formData.append('name', content);
-
-        axios.post(`${url}/tts`,formData).then()
+        console.log(content);
+        await axios.post(`${url}/tts`,content, {
+            headers: {
+                'Content-Type': 'text/html; charset=UTF-8',
+            },
+        });
         /*axios
             .post('http://192.168.1.3:5000/tts', formData)
             .then(function (response) {
@@ -56,7 +59,6 @@ const TTS = ({board_id}) => {
         alert("댓글 등록 완료");
         window.location.reload();
     }, [content]);
-    console.log(commentList)
     /*modal 관련 코드*/
     // 로그인 후 돌아올 수 있게 현재 경로 세팅
 
@@ -69,7 +71,7 @@ const TTS = ({board_id}) => {
                     onChange={(e) => {
                         setContent(e.target.value)
                     }}
-                    multiline placeholder="댓글을 입력해주세요✏️"
+                    multiline placeholder="메시지를 입력해주세요✏️"
                 />
                 {content !== "" ? (
                     <Button variant="outlined" onClick={submit}>등록하기</Button>
@@ -80,11 +82,10 @@ const TTS = ({board_id}) => {
                 )}
             </div>
             <div className="comments-body">
-                {commentList != null ? commentList.map((item, index) => (
-
+                {TTSList != null ? TTSList.map((item, index) => (
                     <div key={index} className="comments-comment">
                         <div className="comment-username">김한성</div>
-                        <div className="comment-content">{item}</div>
+                        <div className="comment-content">{item.content}</div>
                         <EditDeleteBtn item={item} name="tts"/>
                         <hr/>
                     </div>
