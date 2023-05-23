@@ -10,8 +10,7 @@ import axios from "axios";
 import {toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const url="http://15.164.7.163:8080";
-//const url="http://localhost:8080";
+import { url } from '../globals';
 console.log("url = ",url);
 const EditUser = () => {
     const token = useSelector(state => state.Auth.token);

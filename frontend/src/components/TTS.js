@@ -12,6 +12,10 @@ import "../css/comments.scss";
 import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
 import BuildOutlinedIcon from "@mui/icons-material/BuildOutlined";
 import EditDeleteBtn from "./EditDeleteBtn";
+
+import { url } from '../globals';
+console.log("url = ",url);
+
 const TTS = ({board_id}) => {
     // 로그인 후 현재 경로로 돌아오기 위해 useLocation 사용
     const location = useLocation();
@@ -25,7 +29,7 @@ const TTS = ({board_id}) => {
     const [commentList, setCommentList] = useState([]);
     useEffect(() => {
         const getTTSList = async () => {
-            const {data} = await axios.get(`http://localhost:8080/allTTS`);
+            const {data} = await axios.get(`${url}/allTTS`);
             return data;
         }
         // 기존 commentList에 데이터를 덧붙임
@@ -37,7 +41,7 @@ const TTS = ({board_id}) => {
         const formData = new FormData();
         formData.append('name', content);
 
-        axios.post(`http://localhost:8080/tts`,formData).then()
+        axios.post(`${url}/tts`,formData).then()
         /*axios
             .post('http://192.168.1.3:5000/tts', formData)
             .then(function (response) {

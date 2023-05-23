@@ -6,15 +6,13 @@ import {useSearchParams} from "react-router-dom";
 import "../css/boardList.scss";
 import moment from "moment";
 import{IoIdCardOutline,IoIdCardSharp,IoListSharp,IoAppsShar,IoGridSharp} from "react-icons/io5"
-
 import React from 'react';
 import styled from 'styled-components'
 import Tables from "../components/Tables";
 import Note from "../components/Note";
-
 import "../css/allTable.scss";
-const url="http://15.164.7.163:8080";
-//const url="http://localhost:8080";
+
+import { url } from '../globals';
 console.log("url = ",url);
 const BoardList = () => {
     const [pageCount, setPageCount] = useState(0);

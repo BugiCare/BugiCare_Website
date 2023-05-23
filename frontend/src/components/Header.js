@@ -9,8 +9,8 @@ import Dropdown from "./Dropdown";
 import {RiArrowDropDownLine,RiArrowDropUpLine} from "react-icons/ri"
 import {IconButton} from "@mui/material";
 
-const url="http://15.164.7.163:8080";
-//const url="http://localhost:8080";
+import { url } from '../globals';
+
 console.log("url = ",url);
 
 const Header = () => {

@@ -3,8 +3,7 @@ import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import {useEffect, useState} from "react";
 
-const url="http://15.164.7.163:8080";
-//const url="http://localhost:8080";
+import { url } from '../globals';
 console.log("url = ",url);
 
 const Note = ({board_id, name, manager_id}) => {

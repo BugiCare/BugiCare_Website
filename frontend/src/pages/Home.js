@@ -4,8 +4,7 @@ import axios from "axios";
 import Video from "./LiveVideo";
 
 
-const url="http://15.164.7.163:8080";
-//const url="http://localhost:8080";
+import { url } from '../globals';
 console.log("url = ",url);
 
 const Home = () => {

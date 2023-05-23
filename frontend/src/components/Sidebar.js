@@ -4,9 +4,7 @@ import {NavLink, useParams} from "react-router-dom";
 import "../css/sidebar.scss"
 import styled from "styled-components";
 
-const url="http://15.164.7.163:8080";
-//const url="http://localhost:8080";
-console.log("url = ",url);
+
 const Sidebar =(userData) =>{
     const [data,setData] = useState(userData);
     //const [isClick, setIsClick] = useReducer();

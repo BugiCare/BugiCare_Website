@@ -13,8 +13,7 @@ import Tables from "../components/Tables"
 import {Card} from "../components/Card";
 import axios from "axios";
 
-const url="http://15.164.7.163:8080";
-//const url="http://localhost:8080";
+import { url } from '../globals';
 console.log("url = ",url);
 
 const MyList = () => {
