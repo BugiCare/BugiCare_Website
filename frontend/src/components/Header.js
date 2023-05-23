@@ -94,8 +94,9 @@ const Header = () => {
                             {/*<Link to="/mypage"><img className="image" src={profile}/>{name} 님</Link>*/}
 
                             {/*<Link to="/mypage"><img src={profile}/>{name} 님</Link>*/}
-                            <div ref={menuRef} className="a" onClick={() => {setView(!view)}}> <img src={profile}/>{name} 님
+                            <div ref={menuRef} className="ab" onClick={() => {setView(!view)}}> <img src={profile}/>{name} 님
                                 {view ? <RiArrowDropUpLine/> : <RiArrowDropDownLine/>}
+                                <div className="dd">{view && <Dropdown />}</div>
                             </div>
 
 
@@ -114,7 +115,7 @@ const Header = () => {
 
 
         </div>
-            {view && <Dropdown />}
+
         </>
     );
 };

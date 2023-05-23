@@ -42,16 +42,15 @@ const Dropdown =() =>{
         <div className="dropdown">
         {
             menuItem.map((item,index)=>(
-                item.id==4?<NavLink onClick={logout}
-                        to={item.path} key={index} className="dropdown-item" activeclassName="active">
-                        {/*<div style={{display:isOpen?"block":"none"}} className="dropdown-text">{item.name}</div>*/}
-                        <div className="dropdown-text">{item.name}</div>
-                    </NavLink>:
-                <NavLink
-                    to={item.path} key={index} className="dropdown-item" activeclassName="active">
-                    {/*<div style={{display:isOpen?"block":"none"}} className="dropdown-text">{item.name}</div>*/}
-                       <div className="dropdown-text">{item.name}</div>
-                </NavLink>
+
+            item.id ==4 ? <NavLink onClick={logout}
+                to={item.path} key={index} className="dropdown-item" activeclassName="active">
+                <div className="dropdown-text">{item.name}</div>
+            </NavLink> : <NavLink
+                to={item.path} key={index} className="dropdown-item" activeclassName="active">
+                {/*<div style={{display:isOpen?"block":"none"}} className="dropdown-text">{item.name}</div>*/}
+                <div className="dropdown-text">{item.name}</div>
+            </NavLink>
             ))
 
         }
