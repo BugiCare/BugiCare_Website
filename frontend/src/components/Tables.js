@@ -86,9 +86,9 @@ const Tables = ({userList,area})=> {
                                     </TableRows>
                                 )
                             }) :
-                        <TableRows>
-                            <TableCell className="table-body" align="center">관련 데이터 없음</TableCell>
-                        </TableRows>
+                        <div style={{fontSize:"1.5rem",width:"fit-content",padding:"20px",margin:"auto",cursor:"not-allowed"}}>관련 데이터 없음
+
+                        </div>
                     :
                         area=="all"?
                             userList.length !=0 ?

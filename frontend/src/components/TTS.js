@@ -19,19 +19,26 @@ const TTS = ({board_id}) => {
     // 입력한 댓글 내용
     const [content, setContent] = useState("");
     // 현재 페이지, 전체 페이지 갯수
-    const [page, setPage] = useState(1);
-    const [pageCount, setPageCount] = useState(0);
+    const [TTSList, setTTSList] = useState([]);
 
 
     const [commentList, setCommentList] = useState([]);
+    useEffect(() => {
+        const getTTSList = async () => {
+            const {data} = await axios.get(`http://localhost:8080/allTTS`);
+            return data;
+        }
+        // 기존 commentList에 데이터를 덧붙임
+        getTTSList().then((result) => setTTSList([...TTSList, ...result]));
+    }, [])
 
 
     const submit = useCallback(async () => {
         const formData = new FormData();
         formData.append('name', content);
-        setCommentList([...commentList,content]);
 
-        axios
+        axios.post(`http://localhost:8080/tts`,formData).then()
+        /*axios
             .post('http://192.168.1.3:5000/tts', formData)
             .then(function (response) {
                 console.log(response);
@@ -40,10 +47,10 @@ const TTS = ({board_id}) => {
             })
             .catch(function (error) {
                 console.log(error);
-            });
+            });*/
 
-        //alert("댓글 등록 완료");
-        //window.location.reload();
+        alert("댓글 등록 완료");
+        window.location.reload();
     }, [content]);
     console.log(commentList)
     /*modal 관련 코드*/
