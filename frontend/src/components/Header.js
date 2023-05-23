@@ -2,7 +2,7 @@ import "../css/header.scss";
 import {Link, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {jwtUtils} from "../utils/jwtUtils";
-import {useEffect, useState} from "react";
+import {useEffect,useRef, useState} from "react";
 import {setToken} from "../redux/AuthReducer";
 import axios from "axios";
 import Dropdown from "./Dropdown";
@@ -25,6 +25,23 @@ const Header = () => {
     const [isManager, setIsManager] = useState(true);
 
     const [name,setName]=useState("");
+
+    const menuRef = useRef(null);
+    const [view, setView] = useState(false);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (menuRef.current && !menuRef.current.contains(event.target)) {
+                setView(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
     const getData = async () => {
         const {data} = await axios.get(`${url}/manager/1`);
         console.log("매니저 데이터 가져옴", data);
@@ -52,7 +69,6 @@ const Header = () => {
         alert("로그아웃 되었습니다😎");
         navigate("/");
     };
-    const [view, setView] = useState(false);
 
     return (
         <>
@@ -71,14 +87,14 @@ const Header = () => {
                 */}
                 {isAuth | isManager ? (
                     <>
-                        <Link to="/pageUser?page=1" onClick={() => {setView(false)}}>전체 관리</Link>
-                        <Link to="/add-board" onClick={() => {setView(false)}}>등록하기</Link>
-                        <Link to="/myboard-list?page=1"onClick={() => {setView(false)}}>내 관리</Link>
+                        <Link to="/pageUser?page=1" >전체 관리</Link>
+                        <Link to="/add-board">등록하기</Link>
+                        <Link to="/myboard-list?page=1">내 관리</Link>
                         {/*<Link to="#" onClick={logout}>로그아웃</Link>*/}
                             {/*<Link to="/mypage"><img className="image" src={profile}/>{name} 님</Link>*/}
 
                             {/*<Link to="/mypage"><img src={profile}/>{name} 님</Link>*/}
-                            <div className="a" onClick={() => {setView(!view)}}> <img src={profile}/>{name} 님
+                            <div ref={menuRef} className="a" onClick={() => {setView(!view)}}> <img src={profile}/>{name} 님
                                 {view ? <RiArrowDropUpLine/> : <RiArrowDropDownLine/>}
                             </div>
 

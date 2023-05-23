@@ -1,6 +1,6 @@
 import EditDeleteBtn from "../components/EditDeleteBtn";
 import moment from "moment/moment";
-import Comments from "../components/Comments";
+import TTS from "../components/TTS";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 
@@ -49,7 +49,7 @@ const Information = (userData)=>{
                         </div>
                         <hr/>
                         <div className="board-footer">
-                            <Comments board_id={data.id}/>
+                            <TTS board_id={data.id}/>
                         </div>
                     </div>
     )

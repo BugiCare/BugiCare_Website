@@ -33,8 +33,8 @@ const LiveVideo = () => {
         }, []);
     };
     useInterval(() => {
-        getImageData() ;
-    }, 100000);
+        //getImageData() ;
+    }, 100);
     const getImageData = () => {
         axios.get('http://3.36.218.186:5000/cctv').then(json => {
             const img = json.data;

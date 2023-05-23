@@ -19,6 +19,9 @@ const EditDeleteBtn =({item,name})=>{
         case "comment":
             USERID = item.user.id;
             break;
+        case "tts":
+            USERID = item;
+            break;
     }
     const navigate = useNavigate();
     const token = useSelector(state => state.Auth.token);
@@ -51,6 +54,18 @@ const EditDeleteBtn =({item,name})=>{
                     >
                         수정
                     </Button>:null}
+                    {name=="tts" ?
+                        <Button
+                            variant="outlined" endIcon={<BuildOutlinedIcon/>}
+                            onClick={() => {
+
+
+
+
+                            }}
+                        >
+                            전송
+                        </Button>:null}
                 </div>
             }
             {/*modal*/}
