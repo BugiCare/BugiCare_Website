@@ -9,7 +9,7 @@ import PrivateRoute from "./routes/PrivateRoute";
 import AddUser from "./pages/AddUser";
 import BoardList from "./pages/BoardList";
 import LiveVideo from "./pages/LiveVideo";
-import Chart from "./pages/Chart";
+import Analysis from "./pages/Analysis";
 
 //import MyBoardList from "./pages/MyBoardList";
 import Board from "./pages/Board";
@@ -34,7 +34,7 @@ const App = () => {
                 {/*노드JS<Route path="/board/:board_id" element={<Board/>}/>*/}
                 <Route path="/user/:board_id" element={<Board/>}/>
                 <Route path="/user/:board_id/cctv" element={<LiveVideo/>}/>
-                <Route path="/user/:board_id/chart" element={<Chart/>}/>
+                <Route path="/user/:board_id/chart" element={<Analysis/>}/>
 
                     {/*<Route path="/allUser" element={<BoardList/>}/>*/}
                 <Route path="/pageUser" element={<BoardList/>}/>

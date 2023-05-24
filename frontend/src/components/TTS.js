@@ -83,12 +83,11 @@ const TTS = ({board_id}) => {
             </div>
             <div className="comments-body">
                 {TTSList != null ? TTSList.map((item, index) => (
-                    <div key={index} className="comments-comment">
-                        <div className="comment-username">김한성</div>
+                    <><div key={index} className="comments-comment">
                         <div className="comment-content">{item.content}</div>
                         <EditDeleteBtn item={item} name="tts"/>
-                        <hr/>
                     </div>
+                    <hr/></>
                 )): null}
 
             </div>

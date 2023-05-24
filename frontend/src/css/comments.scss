@@ -1,4 +1,5 @@
 .comments-wrapper {
+  align-items: center;
   .comments-header {
     margin: 1rem 0;
     display: flex;
@@ -29,10 +30,10 @@
   }
 
   .comments-body {
-
     .comments-comment {
       margin: 0.5rem 0;
-
+      display: flex;
+      align-items: center;
       .comment-username-date {
         display: flex;
         align-items: baseline;
@@ -43,6 +44,7 @@
       }
 
       .comment-content {
+
         // \n(엔터)를 태그 안의 텍스트에 적용
         white-space: pre-wrap;
         word-break: break-all;

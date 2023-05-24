@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import Sidebar from "../components/Sidebar";
 
 const data = [
     {
@@ -35,16 +34,14 @@ export default class Example extends PureComponent {
 
     render() {
         return (
-            <div className="board-container">
-                <Sidebar/>
-                <div className="chart-wrapper">
+
                 <ResponsiveContainer width="100%" height="100%">
                         <LineChart
                         width={500}
                         height={300}
                         data={data}
                         margin={{
-                        top: 5,
+                        top: 15,
                         right: 30,
                         left: 20,
                         bottom: 5,
@@ -59,8 +56,6 @@ export default class Example extends PureComponent {
                     <Line type="monotone" dataKey="uv" stroke="#82ca9d" activeDot={{ r: 8 }}/>
                 </LineChart>
             </ResponsiveContainer>
-            </div>
-            </div>
         );
     }
 }

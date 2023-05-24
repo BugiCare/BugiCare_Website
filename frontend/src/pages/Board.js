@@ -13,7 +13,6 @@ import moment from "moment";
 import Comments from "../components/Comments";
 import EditDeleteBtn from "../components/EditDeleteBtn";
 import Information from "./Information";
-import Chart from "./Chart";
 
 import Sidebar from "../components/Sidebar";
 
