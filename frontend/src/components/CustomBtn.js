@@ -7,11 +7,12 @@ import React, {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import DisabledByDefaultOutlinedIcon from "@mui/icons-material/DisabledByDefaultOutlined";
+import {BsSend} from "react-icons/bs";
 import axios from "axios";
 
 import { url } from '../globals';
 console.log("url = ",url);
-const EditDeleteBtn =({item,name})=>{
+const CustomBtn =({item,name})=>{
     const [show, setShow] = useState(false);
     let USERID = "";
     switch (name){
@@ -58,7 +59,7 @@ const EditDeleteBtn =({item,name})=>{
                     </Button>:null}
                     {name=="tts" ?
                         <Button
-                            variant="outlined" endIcon={<BuildOutlinedIcon/>}
+                            variant="outlined" endIcon={<BsSend/>}
                             onClick={() => {
 
 
@@ -122,4 +123,4 @@ const EditDeleteBtn =({item,name})=>{
     );
 }
 
-export default EditDeleteBtn;
+export default CustomBtn;

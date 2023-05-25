@@ -17,13 +17,13 @@ const Analysis = () =>{
                 <div className="board-wrapper">
                     <div className="chart-board-subMenu">
                         <IconButton onClick={()=>setMode(1)}>
-                            <BsDoorOpenFill style={{fontSize:"50px"}}/>
+                            <BsDoorOpenFill style={{fontSize:"40px"}}/>
                         </IconButton>
                         <IconButton onClick={()=>setMode(2)}>
-                            <FaBed style={{fontSize:"50px"}}/>
+                            <FaBed style={{fontSize:"40px"}}/>
                         </IconButton>
                         <IconButton onClick={()=>setMode(3)}>
-                            <CgSmartHomeRefrigerator style={{fontSize:"50px"}}/>
+                            <CgSmartHomeRefrigerator style={{fontSize:"40px"}}/>
                         </IconButton>
 
                     </div>

@@ -43,9 +43,9 @@ const Sidebar =(userData) =>{
 
     return(
         <div className="sidebar-container">
-            <Button clicked={isOpen} onClick={() => toggle()}>
+            <div><Button clicked={isOpen} onClick={() => toggle()}>
                 Click
-            </Button>
+            </Button></div>
             <div style={{width:isOpen?"-100px":"60px"}} className="sidebar">
                 {
                     menuItem.map((item,index)=>(
@@ -76,6 +76,7 @@ const Sidebar =(userData) =>{
 export default Sidebar;
 
 const Button = styled.button`
+  
   background-color: grey;
   color:grey;
   border: none;

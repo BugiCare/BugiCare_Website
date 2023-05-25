@@ -1,4 +1,4 @@
-import EditDeleteBtn from "../components/EditDeleteBtn";
+import CustomBtn from "../components/CustomBtn";
 import moment from "moment/moment";
 import TTS from "../components/TTS";
 import React, {useEffect, useState} from "react";
@@ -27,7 +27,7 @@ const Information = (userData)=>{
     },[]);
     return(
         <div className="information">
-                        <EditDeleteBtn item={data} name="board"/>
+                        <CustomBtn item={data} name="board"/>
                         <div className="board-header">
                             <div className="board-header-username">담당자 : {ManagerData.name}</div>
                             {/*<div className="board-header-date">등록일 : {moment(data.updatedAt).add(9,"hour").format('YYYY-MM-DD HH:mm')}</div>*/}
@@ -43,7 +43,7 @@ const Information = (userData)=>{
                                 <div className="board-title">성함 : {data.name}</div>
                                 <div className="board-content">나이 : {data.age}세</div>
                                 <div className="board-content">주소 : {data.address}</div>
-                                <div className="board-content">특이사항 : {data.content}</div>
+                                <div className="board-content">특이사항 : 없음 </div>
                             </div>
                         </div>
                         <hr/>

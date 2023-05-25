@@ -11,7 +11,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import "../css/comments.scss";
 import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
 import BuildOutlinedIcon from "@mui/icons-material/BuildOutlined";
-import EditDeleteBtn from "./EditDeleteBtn";
+import CustomBtn from "./CustomBtn";
 const Comments = ({board_id}) => {
     // 로그인 후 현재 경로로 돌아오기 위해 useLocation 사용
     const location = useLocation();
@@ -107,7 +107,7 @@ const Comments = ({board_id}) => {
                             <div className="comment-date">{moment(item.updatedAt).add(9, "hour").format('YYYY-MM-DD HH:mm:ss')}</div>
                         </div>
                         <div className="comment-content">{item.content}</div>
-                        <EditDeleteBtn item={item} name="comment"/>
+                        <CustomBtn item={item} name="comment"/>
                         <hr/>
                     </div>
                 ))}

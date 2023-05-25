@@ -11,7 +11,7 @@ import DisabledByDefaultOutlinedIcon from "@mui/icons-material/DisabledByDefault
 import api from "../utils/api";
 import moment from "moment";
 import Comments from "../components/Comments";
-import EditDeleteBtn from "../components/EditDeleteBtn";
+import CustomBtn from "../components/CustomBtn";
 import Information from "./Information";
 
 import Sidebar from "../components/Sidebar";

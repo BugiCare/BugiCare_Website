@@ -14,10 +14,8 @@ import { url } from '../globals';
 console.log("url = ",url);
 
 const Header = () => {
-
-    const logo ="image/bugicare.png";
-    const profile ="image/kim.jpeg";
-
+    const [logoImg,setLogoImg] = useState("image/bugicare.png");
+    const [profileImg,setProfileImg] = useState("image/kim.jpeg");
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const token = useSelector(state => state.Auth.token);
@@ -35,20 +33,34 @@ const Header = () => {
                 setView(false);
             }
         };
-
         document.addEventListener('mousedown', handleClickOutside);
-
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, []);
-    const getData = async () => {
+    const getManagerData = async () => {
         const {data} = await axios.get(`${url}/manager/1`);
         console.log("매니저 데이터 가져옴", data);
         setName(data.name);
     }
+
     useEffect(() => {
-        getData()
+        getManagerData();
+        axios.get(`${url}/logo`,{responseType:'blob',})
+            .then(response=>{
+                console.log("33333",response);
+                const imageBlob =new Blob([response.data]);
+                const imageUrl = URL.createObjectURL(imageBlob);
+                setLogoImg(imageUrl);
+            })
+        axios.get(`${url}/manager_image`,{responseType:'blob',})
+            .then(response=>{
+                console.log("33333",response);
+                const imageBlob =new Blob([response.data]);
+                const imageUrl = URL.createObjectURL(imageBlob);
+                setProfileImg(imageUrl);
+            })
+
     },[]);
 
     useEffect(() => {
@@ -75,7 +87,7 @@ const Header = () => {
         <div className="header-wrapper">
             <div className="header-title">
                 <Link to="/">
-                    <img src={logo}/>
+                    <img src={logoImg}/>
                 </Link>
             </div>
             <div className="header-menu">
@@ -94,7 +106,7 @@ const Header = () => {
                             {/*<Link to="/mypage"><img className="image" src={profile}/>{name} 님</Link>*/}
 
                             {/*<Link to="/mypage"><img src={profile}/>{name} 님</Link>*/}
-                            <div ref={menuRef} className="ab" onClick={() => {setView(!view)}}> <img src={profile}/>{name} 님
+                            <div ref={menuRef} className="ab" onClick={() => {setView(!view)}}> <img src={profileImg}/>{name} 님
                                 {view ? <RiArrowDropUpLine/> : <RiArrowDropDownLine/>}
                                 <div className="dd">{view && <Dropdown />}</div>
                             </div>

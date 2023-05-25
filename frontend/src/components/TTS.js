@@ -11,7 +11,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import "../css/comments.scss";
 import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
 import BuildOutlinedIcon from "@mui/icons-material/BuildOutlined";
-import EditDeleteBtn from "./EditDeleteBtn";
+import CustomBtn from "./CustomBtn";
 
 import { url } from '../globals';
 console.log("url = ",url);
@@ -85,7 +85,7 @@ const TTS = ({board_id}) => {
                 {TTSList != null ? TTSList.map((item, index) => (
                     <><div key={index} className="comments-comment">
                         <div className="comment-content">{item.content}</div>
-                        <EditDeleteBtn item={item} name="tts"/>
+                        <CustomBtn item={item} name="tts"/>
                     </div>
                     <hr/></>
                 )): null}
