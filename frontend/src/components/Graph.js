@@ -25,24 +25,153 @@ import {BsEmojiSmile,BsEmojiFrown} from "react-icons/bs";
 import {Button, Dialog, DialogContent, IconButton} from "@mui/material";
 import DisabledByDefaultOutlinedIcon from "@mui/icons-material/DisabledByDefaultOutlined";
 const Graph = ({period,id}) => {
-    const [doorDay, setDoorDay] = useState([]);
-    const [doorWeek, setDoorWeek] = useState([]);
-    const [doorMonth, setDoorMonth] = useState([]);
-
-    const [refDay, setRefDay] = useState([]);
-    const [refrigWeek, setRefrigWeek] = useState([]);
-    const [refrigMonth, setRefrigMonth] = useState([]);
-
-    const [sleepDay, setSleepDay] = useState([]);
-    const [sleepWeek, setSleepWeek] = useState([]);
-    const [sleepMonth, setSleepMonth] = useState([]);
-
 
     const [isFall, setIsFall] = useState(false);
     const [show, setShow] = useState(false);
 
     let count;
     console.log(id)
+
+
+    const [refriTime, setRefriTime] = useState([0, 0, 0, 0, 0, 0]);
+    const [doorTime, setDoorTime] = useState([0, 0, 0, 0, 0, 0]);
+    const [sleepTime, setSleepTime] = useState([1]);
+    const [refriDay, setRefriDay] = useState([0, 0, 0, 0, 0, 0, 0]);
+    const [doorDay, setDoorDay] = useState([0, 0, 0, 0, 0, 0, 0]);
+    const [sleepDay, setSleepDay] = useState([0, 0, 0, 0, 0, 0, 0]);
+    const [refriWeek, setRefriWeek] = useState([0, 0, 0, 0]);
+    const [doorWeek, setDoorWeek] = useState([0, 0, 0, 0]);
+    const [sleepWeek, setSleepWeek] = useState([0, 0, 0, 0]);
+
+    const analyzedData = {
+        문열림: [doorTime, doorDay, doorWeek],
+        수면시간: [
+            //key
+            sleepTime, //시간단위
+
+            sleepDay, //일단뒤
+
+            sleepWeek, //주단위
+        ],
+
+        냉장고열림: [refriTime, refriDay, refriWeek],
+    };
+    const [analyzeData, setAnalyzeData] = useState(analyzedData);
+    function dic(a,b) {
+        const c = a.map((name, index) => ({ name:a[index] , val: b[index] }));
+        return c;
+    }
+    const getSleepTimeDay = async () => {
+        await axios.get('http://15.164.7.163:8080/sleepTime/day').then(json => {
+
+            const numberData = json.data.map((str: string) => parseInt(str));
+            const numberReverse = numberData.reverse();
+
+            console.log(json.data.reverse());
+            setSleepTime(numberReverse);
+
+        });
+    }
+    const recentData = async () => {
+        await axios
+            .get('http://15.164.7.163:8080/count/day/refrigerator')
+            .then(json => {
+                if (json.data.length == 6) {
+                    const numberData = json.data.map((str: string) => parseInt(str));
+                    const numberReverse = numberData.reverse();
+                    const label=["6시간전","5시간전","4시간전","3시간전","2시간전","1시간전"];
+
+                    console.log("$$$$$$$", dic(label,numberReverse))
+                    setRefriTime(numberReverse);
+                }
+            });
+        await axios
+            .get('http://15.164.7.163:8080/count/week/refrigerator')
+            .then(json => {
+                if (json.data.length == 7) {
+                    const numberData = json.data.map((str: string) => parseInt(str));
+                    const numberReverse = numberData.reverse();
+                    const label=["7일전","6일전","5일전","4일전","3일전","2일전","1일전"];
+                    console.log("$$$$$$$", dic(label,numberReverse))
+                    setRefriTime(numberReverse);
+                    // console.log(json.data.reverse());
+                    setRefriDay(numberReverse);
+                }
+            });
+        await axios
+            .get('http://15.164.7.163:8080/count/month/refrigerator')
+            .then(json => {
+                if (json.data.length == 4) {
+                    const numberData = json.data.map((str: string) => parseInt(str));
+                    const numberReverse = numberData.reverse();
+                    const label=["4주전","3주전","2주전","1주전"];
+                    console.log("$$$$$$$", dic(label,numberReverse))
+                    setRefriTime(numberReverse);
+                    // console.log(json.data.reverse());
+                    setRefriWeek(numberReverse);
+                }
+            });
+        await axios.get('http://15.164.7.163:8080/count/day/door').then(json => {
+            if (json.data.length == 6) {
+                const numberData = json.data.map((str: string) => parseInt(str));
+                const numberReverse = numberData.reverse();
+                const label=["6시간전","5시간전","4시간전","3시간전","2시간전","1시간전"];
+                console.log("$$$$$$$", dic(label,numberReverse))
+                setRefriTime(numberReverse);
+                // console.log(json.data.reverse());
+                setDoorTime(numberReverse);
+            }
+        });
+        await axios.get('http://15.164.7.163:8080/count/week/door').then(json => {
+            if (json.data.length == 7) {
+                const numberData = json.data.map((str: string) => parseInt(str));
+                const numberReverse = numberData.reverse();
+                const label=["7일전","6일전","5일전","4일전","3일전","2일전","1일전"];
+                console.log("$$$$$$$", dic(label,numberReverse))
+                setRefriTime(numberReverse);
+                // console.log(json.data.reverse());
+                setDoorDay(numberReverse);
+            }
+        });
+        await axios.get('http://15.164.7.163:8080/count/month/door').then(json => {
+            if (json.data.length == 4) {
+                const numberData = json.data.map((str: string) => parseInt(str));
+                const numberReverse = numberData.reverse();
+                const label=["4주전","3주전","2주전","1주전"];
+                console.log("$$$$$$$", dic(label,numberReverse))
+                setRefriTime(numberReverse);
+                // console.log(json.data.reverse());
+                setDoorWeek(numberReverse);
+            }
+        });
+        await axios.get('http://15.164.7.163:8080/sleepTime/week').then(json => {
+            if (json.data.length == 7) {
+                const numberData = json.data.map((str: string) => parseInt(str));
+                const numberReverse = numberData.reverse();
+                const label=["7일전","6일전","5일전","4일전","3일전","2일전","1일전"];
+                console.log("$$$$$$$", dic(label,numberReverse))
+                setRefriTime(numberReverse);
+                // console.log(json.data.reverse());
+                setSleepDay(numberReverse);
+            }
+        });
+        await axios.get('http://15.164.7.163:8080/sleepTime/month').then(json => {
+            if (json.data.length == 4) {
+                const numberData = json.data.map((str: string) => parseInt(str));
+                const numberReverse = numberData.reverse();
+                const label=["4주전","3주전","2주전","1주전"];
+                console.log("$$$$$$$", dic(label,numberReverse))
+                setRefriTime(numberReverse);
+                // console.log(json.data.reverse());
+                setSleepWeek(numberReverse);
+            }
+        });
+    };
+    useEffect(() => {
+        recentData();
+        setAnalyzeData(analyzedData);
+    }, []);
+
     const useInterval = (callback, delay) => {
         const savedCallback = useRef(null);
 
@@ -61,104 +190,19 @@ const Graph = ({period,id}) => {
         }, []);
     };
     useInterval(() => {
-        getDoor();
-        getSleep();
-        getRefrig();
+        recentData();
+        setAnalyzeData(analyzedData);
+
+    }, 3000);
+    useInterval(() => {
+        getSleepTimeDay();
         axios.get('http://15.164.7.163:8080/fallen').then(json => {
             const data = json.data;
             console.log("$$$$$$",data);
             setIsFall(data)
 
         });
-    }, 5000);
-
-    let label =[];
-    const getDoor = async ()=>{
-        await axios
-            .get(`${url}/count/day/door`)
-            .then(json => {
-                label=["6시간전","5시간전","4시간전","3시간전","2시간전","1시간전"];
-                const numberData = json.data.map((str: string) => parseInt(str));
-                setDoorDay(dictionary(label,numberData.reverse()));
-                //console.log(`${id}, day`,numberData);
-                //console.log(`d, day`,doorDay);
-            });
-        await axios
-            .get(`${url}/count/week/door`)
-            .then(response => {
-                label=["7일전","6일전","5일전","4일전","3일전","2일전","1일전"];
-                const numberData = response.data.map((str: string) => parseInt(str));
-                setDoorWeek(dictionary(label,numberData));
-                //console.log(`${id}, day`,numberData);
-                console.log(`d, week`,doorWeek);
-            });
-        await axios
-            .get(`${url}/count/month/door`)
-            .then(json => {
-                console.log(json);
-
-                label=["4주전","3주전","2주전","1주전"];
-                const numberData = json.data.map((str: string) => parseInt(str));
-                console.log(numberData);
-
-                setDoorMonth(dictionary(label,numberData));
-                //console.log(`${id}, day`,numberData);
-                console.log(`${id}, month`,doorMonth);
-            });
-    }
-    const getRefrig = async ()=>{
-        await axios
-            .get(`${url}/count/day/refrigerator`)
-            .then(json => {
-                label=["6시간전","5시간전","4시간전","3시간전","2시간전","1시간전"];
-                const numberData = json.data.map((str: string) => parseInt(str));
-                setRefDay(dictionary(label,numberData.reverse()));
-                console.log(`${id}, day`,refDay);
-            });
-        await axios
-            .get(`${url}/count/week/refrigerator`)
-            .then(json => {
-                label=["7일전","6일전","5일전","4일전","3일전","2일전","1일전"];
-                const numberData = json.data.map((str: string) => parseInt(str));
-                setRefrigWeek(dictionary(label,numberData.reverse()));
-                //console.log(`${id}, day`,numberData);
-                console.log(`${id}, week`,refrigWeek);
-            });
-        await axios
-            .get(`${url}/count/month/refrigerator`)
-            .then(json => {
-                label=["4주전","3주전","2주전","1주전"];
-                const numberData = json.data.map((str: string) => parseInt(str));
-                setRefrigMonth(dictionary(label,numberData.reverse()));
-                //console.log(`${id}, day`,numberData);
-                console.log(`${id}, month`,refrigMonth);
-            });
-    }
-    const getSleep = async ()=>{
-        await axios
-            .get(`${url}/sleepTime/day`)
-            .then(json => {
-                const numberData = json.data.map((str: string) => parseInt(str));
-                setSleepDay(numberData);
-                console.log(`${id}, day`,sleepDay);
-            });
-        await axios
-            .get(`${url}/sleepTime/week`)
-            .then(json => {
-                label=["7일전","6일전","5일전","4일전","3일전","2일전","1일전"];
-                const numberData = json.data.map((str: string) => parseInt(str));
-                setSleepWeek(dictionary(label,numberData.reverse()));
-                console.log(`${id}, week`,sleepWeek);
-            });
-        await axios
-            .get(`${url}/sleepTime/month`)
-            .then(json => {
-                label=["4주전","3주전","2주전","1주전"];
-                const numberData = json.data.map((str: string) => parseInt(str));
-                setSleepMonth(dictionary(label,numberData.reverse()));
-                console.log(`${id}, month`,sleepMonth);
-            });
-    }
+        },1000)
 
 
     useEffect( ()=>{
@@ -166,22 +210,10 @@ const Graph = ({period,id}) => {
         setShow(true):setShow(false)
     },[]);
 
-    function dictionary(a,b){
-        const data = a.reduce((acc, key, index) => {
-            acc.push({
-                name: key,
-                val: Number(b[index]),
-            });
-            return acc;
-        },[]);
-        return data;
-    }
     const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
-
 
     return (
         <>
-
             {
                 id =="sleep" && period =="day" ?
                  sleepDay ==0 && isFall == false?
@@ -198,7 +230,7 @@ const Graph = ({period,id}) => {
             }
             {
                 id == "sleep" ? period =="week" ?
-                        <BarChart width={500} height={490} data={sleepWeek}
+                        <BarChart width={500} height={490} data={sleepDay}
                                   margin={{
                                       top: 15,
                                       right: 30,
@@ -215,7 +247,7 @@ const Graph = ({period,id}) => {
                             <Pie
                                 dataKey="val"
                                 isAnimationActive={false}
-                                data={sleepMonth}
+                                data={sleepWeek}
                                 cx="50%"
                                 cy="50%"
                                 outerRadius={150}
@@ -223,7 +255,7 @@ const Graph = ({period,id}) => {
                                 fill="#8884d8"
                                 label
                             >
-                            {sleepMonth.map((entry, index) => (
+                            {sleepWeek.map((entry, index) => (
                                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                             ))}
                                 </Pie>
@@ -232,14 +264,14 @@ const Graph = ({period,id}) => {
             }
             {
                 id=="door" && period =="day" ?
-                        <BarChart width={500} height={490} data={doorDay}
+                        <BarChart width={500} height={490} data={doorTime}
                                   margin={{
                                       top: 15,
                                       right: 30,
                                       left: 20,
                                       bottom: 5,}}>
                             <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="name" />
+                            <XAxis dataKey={"name"} />
                             <YAxis />
                             <Tooltip />
                             <Bar dataKey="val" fill="#8884d8" background={{ fill: '#eee' }} />
@@ -248,7 +280,7 @@ const Graph = ({period,id}) => {
                         <AreaChart
                             width={500}
                             height={500}
-                            data={doorWeek}
+                            data={doorDay}
                             margin={{
                                 top: 10,
                                 right: 30,
@@ -267,7 +299,7 @@ const Graph = ({period,id}) => {
                                 <Pie
                                     dataKey="val"
                                     isAnimationActive={false}
-                                    data={doorMonth}
+                                    data={doorWeek}
                                     cx="50%"
                                     cy="50%"
                                     outerRadius={150}
@@ -275,7 +307,7 @@ const Graph = ({period,id}) => {
                                     fill="#8884d8"
                                     label
                                 >
-                                    {doorMonth.map((entry, index) => (
+                                    {doorWeek.map((entry, index) => (
                                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                                     ))}
                                 </Pie>
@@ -284,7 +316,7 @@ const Graph = ({period,id}) => {
             }
             {
                 id=="refrigerator" && period =="day" ?
-                    <BarChart width={500} height={490} data={refDay}
+                    <BarChart width={500} height={490} data={refriTime}
                               margin={{
                                   top: 15,
                                   right: 30,
@@ -300,7 +332,7 @@ const Graph = ({period,id}) => {
                         <AreaChart
                             width={500}
                             height={500}
-                            data={refrigWeek}
+                            data={refriDay}
                             margin={{
                                 top: 10,
                                 right: 30,
@@ -319,7 +351,7 @@ const Graph = ({period,id}) => {
                                 <Pie
                                     dataKey="val"
                                     isAnimationActive={false}
-                                    data={refrigMonth}
+                                    data={refriWeek}
                                     cx="50%"
                                     cy="50%"
                                     outerRadius={150}
@@ -327,7 +359,7 @@ const Graph = ({period,id}) => {
                                     fill="#8884d8"
                                     label
                                 >
-                                    {refrigMonth.map((entry, index) => (
+                                    {refriWeek.map((entry, index) => (
                                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                                     ))}
                                 </Pie>
