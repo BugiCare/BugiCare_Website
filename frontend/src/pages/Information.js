@@ -26,7 +26,7 @@ const Information = (userData)=>{
             })
     },[]);
     return(
-        <div className="information">
+        <><div className="information">
                         <CustomBtn item={data} name="board"/>
                         <div className="board-header">
                             <div className="board-header-username">담당자 : {ManagerData.name}</div>
@@ -34,7 +34,7 @@ const Information = (userData)=>{
                             <div className="board-header-date">{ManagerData.center_name} 소속</div>
 
                         </div>
-                        <hr/>
+                        <hr className="hr2"/>
                         <div className="board-body">
                             <div className="board-image">
                                 <img src={profileImg}/>
@@ -46,11 +46,14 @@ const Information = (userData)=>{
                                 <div className="board-content">특이사항 : 없음 </div>
                             </div>
                         </div>
-                        <hr/>
-                        <div className="board-footer">
-                            <TTS board_id={data.id}/>
-                        </div>
+
+
                     </div>
+            <hr className="hr1"/>
+            <div className="board-footer">
+                <TTS board_id={data.id}/>
+            </div>
+        </>
     )
 
 }

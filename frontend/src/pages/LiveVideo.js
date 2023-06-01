@@ -33,7 +33,7 @@ const LiveVideo = () => {
         }, []);
     };
     useInterval(() => {
-        //getImageData() ;
+        getImageData() ;
     }, 100);
     const getImageData = () => {
         axios.get('http://3.36.218.186:5000/cctv').then(json => {
@@ -49,7 +49,7 @@ const LiveVideo = () => {
             <Sidebar/>
         <div className="board-wrapper">
 
-            <div>
+            <div className="video-wrapper">
                 <ProfilePhoto src={`${imageData}`} />
                 {/*<ProfilePhoto source={{uri:`${imageData}`}} resizeMode="contain"/>*/}
             </div>

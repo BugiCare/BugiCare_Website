@@ -13,6 +13,8 @@ import Note from "../components/Note";
 import "../css/allTable.scss";
 
 import { url } from '../globals';
+import CustomSwiper from "../components/CustomSwiper";
+import {SwiperSlide} from "swiper/react";
 console.log("url = ",url);
 const BoardList = () => {
     const [pageCount, setPageCount] = useState(0);
@@ -25,8 +27,8 @@ const BoardList = () => {
 console.log(mode);
     const getUserDataForCard = async () => {
         const page_number = searchParams.get("page");
-        const {data} = await axios.get(`${url}/pageUser?page=${page_number}&offset=3`);
-        //const {data} = await axios.get(`${url}/allUser`);
+        //const {data} = await axios.get(`${url}/pageUser?page=${page_number}&offset=3`);
+        const {data} = await axios.get(`${url}/allUser`);
         return data;
     }
     const getUserDataForTable = async () => {
@@ -51,7 +53,7 @@ console.log(mode);
     }, [])
 
     return (
-
+<>
         <div className="boardList-wrapper">
             <div className="board-subMenu">
                 <IconButton onClick={()=>setMode(1)}>
@@ -69,22 +71,17 @@ console.log(mode);
             {mode==1?
                 <>
                     <div className="boardList-card">
-                        {cardUserList.map((item) => (
-                            <Card key={item.id} name={item.name} gender={item.gender}
-                                  age={item.age} address={item.address} phone={item.phone}
-                                  board_id={item.id} manager_id ={item.manager_id}/>))
-                        }
+
+
+                        <CustomSwiper id={"card"}>
+                            {cardUserList.map((item) => (
+                                <SwiperSlide><Card key={item.id} name={item.name} gender={item.gender}
+                                                   age={item.age} address={item.address} phone={item.phone}
+                                                   board_id={item.id} manager_id ={item.manager_id}/></SwiperSlide>
+                            ))}
+                        </CustomSwiper>
                     </div>
-                    <div className="boardList-footer">
-                        <Pagination
-                            variant="outlined" color="primary" page={Number(searchParams.get("page"))}
-                            count={pageCount} size="large"
-                            onChange={(e, value) => {
-                                window.location.href = `/pageUser?page=${value}`;
-                            }}
-                            showFirstButton showLastButton
-                        />
-                    </div>
+
                 </> : null}
             {mode==2?
                     <div className="boardList-table"><Tables userList={tableUserList} area="all"/></div>
@@ -98,7 +95,8 @@ console.log(mode);
                         :null}
 
         </div>
-    )
+</>
+)
 }
 
 

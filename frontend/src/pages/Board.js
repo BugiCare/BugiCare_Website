@@ -49,13 +49,11 @@ console.log(board_id,board)
             <Sidebar userData={board}/>
             {isLoaded && (
                 <div className="board-wrapper">
-                    {/*<Sidebar/>*/}
                     <Information userData={board}/>
                 </div>
             )}
 
         </div>
-        /*</React.Fragment>*/
     );
 }
 export default Board;

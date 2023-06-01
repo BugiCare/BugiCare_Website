@@ -45,7 +45,7 @@ const TTS = ({board_id}) => {
                 'Content-Type': 'text/html; charset=UTF-8',
             },
         });
-        /*axios
+        axios
             .post('http://192.168.1.3:5000/tts', formData)
             .then(function (response) {
                 console.log(response);
@@ -54,7 +54,7 @@ const TTS = ({board_id}) => {
             })
             .catch(function (error) {
                 console.log(error);
-            });*/
+            });
 
         alert("댓글 등록 완료");
         window.location.reload();

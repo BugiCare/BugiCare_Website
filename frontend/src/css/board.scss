@@ -84,9 +84,9 @@
 }
 .board-wrapper{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   transition: width 1s;
-  width: 500px;
+  width: 800px;
   height:100%;
   opacity: 0;
   border-radius: 10px;
@@ -140,14 +140,18 @@
     }
   }
   .board-footer{
-
+    padding-left: 20px;
   }
 
 }
 .chart-wrapper{
   background-color: white;
-  width: 100%;
+  margin: auto;
+  width: 600px;
   height:500px;
+  .eVzQgc {
+    width: auto;
+  }
 }
 .chart-board-subMenu{
   background-color: white;
@@ -156,4 +160,32 @@
   display: flex;
   flex-direction: row;
   align-self: flex-end;
+}
+.information{
+  padding-right: 20px;
+}
+hr.hr1{
+  border: 1px solid grey;
+  border-radius: 5px;
+}
+hr.hr2{
+  border: 0.8px double grey;
+  border-radius: 5px;
+}
+.board-analysis-wrapper{
+  display: flex;
+  flex-direction: column;
+  transition: width 1s;
+  width: 800px;
+  height:100%;
+  opacity: 0;
+  border-radius: 10px;
+  animation: smoothAppear 1.5s forwards;
+  //animation-delay: 0.5s;
+  //font-family: 'Noto Sans KR', sans-serif;
+  background-color: #fff;
+  padding: 4rem;
+}
+.video-wrapper{
+  margin:auto;
 }

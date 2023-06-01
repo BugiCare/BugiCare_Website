@@ -14,6 +14,7 @@ import { url } from '../globals';
 console.log("url = ",url);
 const CustomBtn =({item,name})=>{
     const [show, setShow] = useState(false);
+    const [content,setContent] =useState(item.content);
     let USERID = "";
     switch (name){
         case "board":
@@ -61,9 +62,18 @@ const CustomBtn =({item,name})=>{
                         <Button
                             variant="outlined" endIcon={<BsSend/>}
                             onClick={() => {
+                                const formData = new FormData();
+                                formData.append('name', content);
+                                axios
+                                    .post('http://192.168.1.3:5000/tts', formData)
+                                    .then(function (response) {
+                                        console.log(response);
+                                        console.log(formData);
 
-
-
+                                    })
+                                    .catch(function (error) {
+                                        console.log(error);
+                                    });
 
                             }}
                         >
