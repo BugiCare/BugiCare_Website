@@ -1,0 +1,51 @@
+@keyframes smoothAppear {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}
+.myList-wrapper{
+  width: 90%;
+  height: 70vh;
+  background-color: white;
+  margin: auto;
+  border-radius: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .myList-body{
+    margin: auto;
+    display: flex;
+    align-items: center;
+    font-family: 'MapoPeacefull';
+    opacity: 0;
+    animation: smoothAppear 1.5s forwards;
+    animation-delay: 0.5s;
+    .myList-profile{
+      //flex-shrink: 0;
+      width: 40%;
+      //height: 100%;
+      //margin-right: 1rem;
+      //margin-left: 20rem;
+      align-items: center;
+      justify-content: center;
+      //flex-wrap: wrap;
+    }
+    .myList-table{
+      &:hover {
+        box-shadow: rgba(0, 0, 0, 0.9) 0px 22px 70px 4px;
+      }
+      border-radius: 30px;
+      transition: width 1s, height 1s, box-shadow 1s;
+
+      width: 700px;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+

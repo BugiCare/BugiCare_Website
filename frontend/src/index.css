@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap');
+
+@media all and (min-width: 1024px){
+  html{
+    font-size: 100%
+  }
+}
+
+@media all and (max-width: 1024px) {
+  html{
+    font-size: 85%;
+  }
+}
+@media all and (max-width: 768px) {
+  html {
+    font-size: 70%;
+  }
+}
+@media all and (max-width: 500px) {
+  html {
+    font-size: 55%;
+  }
+}
+
+@media all and (max-width: 400px) {
+  html {
+    font-size: 45%;
+  }
+}
+
+@font-face {
+  font-family: "BMJUA";
+  src: url(../src/resource/font/BMJUA.ttf)format("truetype");
+}
+@font-face {
+  font-family: "ChosunCentennial";
+  src: url(../src/resource/font/ChosunCentennial.ttf)format("truetype");
+}
+@font-face {
+  font-family: "MapoPeacefull";
+  src: url(../src/resource/font/MapoPeacefull.ttf)format("truetype");
+}
+@font-face {
+  font-family: "NanumSquareRound";
+  src: url(../src/resource/font/NanumSquareRoundR.ttf)format("truetype");
+}
+
+body {
+  margin: 0;
+  padding-top: 10rem;
+  background-color: #d8ecff;
+  width: 100%;
+  height: 100%;
+
+  /*font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;*/
+}

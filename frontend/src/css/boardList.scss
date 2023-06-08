@@ -1,0 +1,63 @@
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.boardList-wrapper{
+  width: 90%;
+  height: 70vh;
+  background-color: white;
+  margin: auto;
+  border-radius: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .boardList-card{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeIn ease-in 1;
+    animation-fill-mode: forwards;
+    animation-duration: 1s;
+    animation-delay: 0s;
+  }
+  .boardList-table{
+    width: 1000px;
+    margin: auto;
+    opacity: 0;
+    animation: fadeIn ease-in 1;
+    animation-fill-mode: forwards;
+    animation-duration: 1s;
+    animation-delay: 0s;
+  }
+  .boardList-note{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeIn ease-in 1;
+    animation-fill-mode: forwards;
+    animation-duration: 1s;
+    animation-delay: 0s;
+  }
+  .boardList-footer{
+    margin: 1.5rem;
+    animation: fadeIn ease-in 1;
+    animation-fill-mode: forwards;
+    animation-duration: 1s;
+    animation-delay: 0s;
+  }
+}
+
+.board-subMenu{
+  background-color: white;
+  height: fit-content;
+  display: flex;
+  flex-direction: row;
+  float:right;
+  align-self: flex-end;
+  margin-right: 70px;
+  padding-top: 20px;
+}
+

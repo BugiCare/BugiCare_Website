@@ -1,0 +1,41 @@
+.TableContainer{
+  background-color: #ffffff;
+  max-height : 400px;
+  //width : 100%;
+  overflow-x:auto;
+  border-radius: 30px;
+
+  .table-head{
+    font-weight: bold;
+    font-size: 1.5rem;
+    background-color:#9ec9ff;
+    //border-top-left-radius: 30px;
+    //border-top-right-radius: 30px;
+    word-spacing: 5px;
+    font-family: 'MapoPeacefull';
+  }
+  .table-row:hover {
+    background-color: rgb(231, 235, 240);
+    cursor: pointer;
+  }
+  .table-profile{
+    width: 80px;
+  }
+  .table-body{
+    font-weight: bold;
+    font-size: 1.3rem;
+    font-family: 'MapoPeacefull';
+  }
+  .table-body1{
+    font-size: 1.3rem;
+    width: 300px;
+    font-family: 'MapoPeacefull';
+  }
+  img{
+    width:50%;
+    //height: 100%;
+    object-fit: cover;
+    background: #4f4f78;
+    border-radius: 50%;
+  }
+}
