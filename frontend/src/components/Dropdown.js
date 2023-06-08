@@ -1,7 +1,6 @@
 import React, {useState} from "react"
 import {NavLink} from "react-router-dom";
 import "../css/dropdown.scss";
-import {setToken} from "../redux/AuthReducer";
 
 const Dropdown =() =>{
 
@@ -32,8 +31,6 @@ const Dropdown =() =>{
         },
     ]
     const logout = async () => {
-        //await dispatch(setToken(""));
-        //setIsManager(false);
         alert("로그아웃 되었습니다😎");
         //navigate("/");
     };
@@ -43,7 +40,7 @@ const Dropdown =() =>{
         {
             menuItem.map((item,index)=>(
 
-            item.id ==4 ? <NavLink onClick={logout}
+            item.id ===4 ? <NavLink onClick={logout}
                 to={item.path} key={index} className="dropdown-item" activeclassName="active">
                 <div className="dropdown-text">{item.name}</div>
             </NavLink> : <NavLink

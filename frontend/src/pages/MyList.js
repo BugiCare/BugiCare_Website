@@ -1,20 +1,11 @@
-import {Pagination} from "@mui/material";
 import {ProfileCard} from "../components/ProfileCard";
 import {useEffect, useState} from "react";
-import api from "../utils/api";
-import {useSearchParams} from "react-router-dom";
 import "../css/myList.scss";
-import {useSelector} from "react-redux";
-import {jwtUtils} from "../utils/jwtUtils";
-import moment from "moment";
-//=====================================
 
 import Tables from "../components/Tables"
-import {Card} from "../components/Card";
 import axios from "axios";
 
 import { url } from '../globals';
-console.log("url = ",url);
 
 const MyList = () => {
     const [myUserList, setMyUserList] = useState([]);
@@ -34,7 +25,6 @@ const MyList = () => {
         getMyUserData().then(result => setMyUserList(result));
         getManagerData().then(result => setName(result));
     }, [])
-    console.log("내관리 리스트 = ",myUserList)
 
 
 
@@ -47,17 +37,7 @@ const MyList = () => {
                                   img_url={"image/kim.jpeg"}/>
                 </div>
                 <div className="myList-table">
-                    {/*{myUserList.length !=0 ?
-                        <Tables userList={myUserList}/>
-                        : null
-                    }*/}
-
                     <Tables userList={myUserList} area="my"/>
-
-                   {/*{myUserList.map((item) => (
-                        <Tables userList={item}/>
-
-                    ))}*/}
                </div>
 
             </div>

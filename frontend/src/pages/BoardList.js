@@ -1,13 +1,11 @@
-import {IconButton, Pagination} from "@mui/material";
+import {IconButton} from "@mui/material";
 import {Card} from "../components/Card";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {useSearchParams} from "react-router-dom";
 import "../css/boardList.scss";
-import moment from "moment";
-import{IoIdCardOutline,IoIdCardSharp,IoListSharp,IoAppsShar,IoGridSharp} from "react-icons/io5"
+import{IoIdCardSharp,IoListSharp,IoGridSharp} from "react-icons/io5"
 import React from 'react';
-import styled from 'styled-components'
 import Tables from "../components/Tables";
 import Note from "../components/Note";
 import "../css/allTable.scss";
@@ -15,7 +13,6 @@ import "../css/allTable.scss";
 import { url } from '../globals';
 import CustomSwiper from "../components/CustomSwiper";
 import {SwiperSlide} from "swiper/react";
-console.log("url = ",url);
 const BoardList = () => {
     const [pageCount, setPageCount] = useState(0);
     const [cardUserList, setCardUserList] = useState([]);
@@ -24,7 +21,6 @@ const BoardList = () => {
     const [searchParams, setSearchParams] = useSearchParams();
 
     const [mode, setMode] = useState(1);
-console.log(mode);
     const getUserDataForCard = async () => {
         const page_number = searchParams.get("page");
         //const {data} = await axios.get(`${url}/pageUser?page=${page_number}&offset=3`);
@@ -45,15 +41,13 @@ console.log(mode);
     }
     useEffect(() => {
         getUserDataForCard().then(result => setCardUserList(result));
-        //getUserDataForTable().then(result => {setTableUserList(result);setPostUserList(result);});
-
         getUserDataForTable().then(result => setTableUserList(result));
         getUserDataForNote().then(result => setPostUserList(result));
         getTotalBoard().then(result => setPageCount(Math.ceil(result / 4)));
     }, [])
 
     return (
-<>
+        <>
         <div className="boardList-wrapper">
             <div className="board-subMenu">
                 <IconButton onClick={()=>setMode(1)}>
@@ -65,14 +59,10 @@ console.log(mode);
                 <IconButton onClick={()=>setMode(3)}>
                     <IoGridSharp style={{width:"70%"}}/>
                 </IconButton>
-
             </div>
-
             {mode==1?
                 <>
                     <div className="boardList-card">
-
-
                         <CustomSwiper id={"card"}>
                             {cardUserList.map((item) => (
                                 <SwiperSlide><Card key={item.id} name={item.name} gender={item.gender}
@@ -95,8 +85,8 @@ console.log(mode);
                         :null}
 
         </div>
-</>
-)
+        </>
+    )
 }
 
 

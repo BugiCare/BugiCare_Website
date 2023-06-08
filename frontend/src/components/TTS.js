@@ -14,7 +14,6 @@ import BuildOutlinedIcon from "@mui/icons-material/BuildOutlined";
 import CustomBtn from "./CustomBtn";
 
 import { url } from '../globals';
-console.log("url = ",url);
 
 const TTS = ({board_id}) => {
     // 로그인 후 현재 경로로 돌아오기 위해 useLocation 사용
@@ -35,11 +34,9 @@ const TTS = ({board_id}) => {
     }, [])
 
 
-    console.log(TTSList);
     const submit = useCallback(async () => {
         const formData = new FormData();
         formData.append('name', content);
-        console.log(content);
         await axios.post(`${url}/tts`,content, {
             headers: {
                 'Content-Type': 'text/html; charset=UTF-8',
@@ -48,12 +45,10 @@ const TTS = ({board_id}) => {
         axios
             .post('http://192.168.1.3:5000/tts', formData)
             .then(function (response) {
-                console.log(response);
-                console.log(formData);
+
 
             })
             .catch(function (error) {
-                console.log(error);
             });
 
         alert("댓글 등록 완료");

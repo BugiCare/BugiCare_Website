@@ -1,7 +1,6 @@
 import "../css/textArea.scss";
 
 const TextArea = ({ auth,setName,setAddress,setGender,setAge,setPhone,setCenter, name,address,gender,age, phone,center }) => {
-    console.log("누구인가? ",auth)
     return (
         auth ==="manager"?
         <div className="textArea-wrapper">

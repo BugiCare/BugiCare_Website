@@ -52,7 +52,7 @@ const CustomSwiper = ({id,children}) => {
 
     return (
         <>
-            {id == "card"?
+            {id === "card"?
                 <CardStyled>
                 <IconButton onClick={goToPrevSlide} >
                 <GrFormPrevious/>

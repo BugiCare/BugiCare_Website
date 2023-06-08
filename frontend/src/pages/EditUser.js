@@ -1,5 +1,4 @@
-import {useSelector} from "react-redux";
-import {useNavigate, useParams} from "react-router-dom";
+import { useParams} from "react-router-dom";
 import {useCallback, useEffect, useState} from "react";
 import ImageUploader from "../components/ImageUploader";
 import api from "../utils/api";
@@ -11,10 +10,7 @@ import {toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { url } from '../globals';
-console.log("url = ",url);
 const EditUser = () => {
-    const token = useSelector(state => state.Auth.token);
-    const navigate = useNavigate();
     const {board_id} = useParams();
     const [name, setName] = useState("");
     const [address, setAddress] = useState("");
@@ -30,7 +26,6 @@ const EditUser = () => {
     useEffect(() => {
         const getBoard = async () => {
             const {data} = await axios.get(`${url}/user/${board_id}`);
-            console.log(data)
             return data;
         }
         getBoard().then((result) => {
@@ -52,17 +47,13 @@ const EditUser = () => {
             const formData = new FormData();
             formData.append("name", name);
             formData.append("address", address);
-            // 이미지를 선택했을 때만 formdata에 넣음
             formData.append("file", image.image_file);
-            // 수정할 땐 board_id를 보내자
             formData.append("id", board_id);
             await api.put("/api/board", formData);
             window.alert("😎수정이 완료되었습니다😎");
-            // 이전 페이지로 돌아가기
             window.location.href = `/board/${board_id}`;
         } catch (e) {
-            // 서버에서 받은 에러 메시지 출력
-            toast.error("오류발생! 이모지를 사용하면 오류가 발생할 수 있습니다" + "😭", {
+            toast.error("오류발생!" + "😭", {
                 position: "top-center",
             });
         }

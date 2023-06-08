@@ -7,11 +7,9 @@ import {setToken} from "../redux/AuthReducer";
 import axios from "axios";
 import Dropdown from "./Dropdown";
 import {RiArrowDropDownLine,RiArrowDropUpLine} from "react-icons/ri"
-import {IconButton} from "@mui/material";
 
 import { url } from '../globals';
 
-console.log("url = ",url);
 
 const Header = () => {
     const [logoImg,setLogoImg] = useState("image/bugicare.png");
@@ -40,7 +38,6 @@ const Header = () => {
     }, []);
     const getManagerData = async () => {
         const {data} = await axios.get(`${url}/manager/1`);
-        console.log("매니저 데이터 가져옴", data);
         setName(data.name);
     }
 
@@ -48,14 +45,12 @@ const Header = () => {
         getManagerData();
         axios.get(`${url}/logo`,{responseType:'blob',})
             .then(response=>{
-                console.log("33333",response);
                 const imageBlob =new Blob([response.data]);
                 const imageUrl = URL.createObjectURL(imageBlob);
                 setLogoImg(imageUrl);
             })
         axios.get(`${url}/manager_image`,{responseType:'blob',})
             .then(response=>{
-                console.log("33333",response);
                 const imageBlob =new Blob([response.data]);
                 const imageUrl = URL.createObjectURL(imageBlob);
                 setProfileImg(imageUrl);
@@ -74,7 +69,6 @@ const Header = () => {
             setIsAuth(false);
         }
     }
-    // 비동기로 처리!
     const logout = async () => {
         await dispatch(setToken(""));
         //setIsManager(false);

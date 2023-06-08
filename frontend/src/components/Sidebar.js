@@ -7,7 +7,6 @@ import styled from "styled-components";
 
 const Sidebar =(userData) =>{
     const [data,setData] = useState(userData);
-    //const [isClick, setIsClick] = useReducer();
 
 
     const {board_id} = useParams();
@@ -56,7 +55,7 @@ const Sidebar =(userData) =>{
 
                             to={item.path} key={index} className="link" activeclassName="active">
                             {
-                                isOpen==1 ?(<div style={{display:isOpen?"block":"none"}} className="link-text">{item.name}</div>):
+                                isOpen===1 ?(<div style={{display:isOpen?"block":"none"}} className="link-text">{item.name}</div>):
                                     item.id===1?<div style={{display:isHover1?"block":"none"}} className="link-text">{item.name}</div>
                                         :item.id===2?<div style={{display:isHover2?"block":"none"}} className="link-text">{item.name}</div>
                                             :item.id===3?<div style={{display:isHover3?"block":"none"}} className="link-text">{item.name}</div>

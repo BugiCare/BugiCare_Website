@@ -20,7 +20,6 @@ import MyList from "./pages/MyList";
 
 const App = () => {
     const token = useSelector((state) => state.Auth.token);
-    console.log(token);
     const location = useLocation();
 
     return (

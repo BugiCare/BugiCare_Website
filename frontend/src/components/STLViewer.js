@@ -5,9 +5,6 @@ import { StlViewer } from "react-stl-viewer";
 
 
 const STLViewer =() => {
-    const [file, setFile] = useState();
-    const [isFile, setIsFile] = useState(false);
-    const [volume, setvolume] = useState(5);
     const Bugi ="image/BugiCare.stl";
     const [x, setX] = useState(0);
 

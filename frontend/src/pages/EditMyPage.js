@@ -6,7 +6,6 @@ import "../css/EditprofileCard.scss";
 import {Button} from "@mui/material";
 
 import { url } from '../globals';
-console.log("url = ",url);
 
 const EditMyPage = () => {
     const [name, setName] = useState("");
@@ -20,7 +19,6 @@ const EditMyPage = () => {
 
     const getData = async () => {
         const {data} = await axios.get(`${url}/manager/1`);
-        console.log("매니저 데이터 가져옴", data);
         return data;
     }
     useEffect(() => {
@@ -28,9 +26,7 @@ const EditMyPage = () => {
             setName(result.name);
             setCenter(result.center_name);
             setPhone(result.phone);
-            // 이미지는 파일을 불러올 필요가 없이 미리보기 url만 가져온다.
-            // 이미지를 선택하지 않고 올리면 db에 저장되어 있는 이미지를 그대로 사용!
-            //setImage({...image, preview_URL: `/api/image/view/${board_id}`})
+
         });
     }, [])
     return(
@@ -97,14 +93,6 @@ const EditMyPage = () => {
 
 
                     </div>
-
-                    {/*<TextArea auth={authority}
-                              setName={setName}
-                              setAddress={setCenter}
-                              setContent={setPhone}
-                              name={name}
-                              address={center}
-                              content={phone}/>*/}
                 </div>
             </div>
 

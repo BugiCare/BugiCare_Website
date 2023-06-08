@@ -28,15 +28,15 @@ const Analysis = () =>{
 
                     </div>
                     <div className="chart-wrapper">
-                        {mode==1?
+                        {mode===1?
                             <>
                                 <CustomSwiper id={"door"}/>
                             </>:null}
-                        {mode==2?
+                        {mode===2?
                             <>
                                 <CustomSwiper id={"sleep"}/>
                             </>:null}
-                        {mode==3?
+                        {mode===3?
                             <>
                                 <CustomSwiper id={"refrigerator"}/>
                             </>:null}
